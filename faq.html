@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions | SwiftHaul Logistics Nigeria</title>
+    <meta name="description" content="Find answers to common questions about parcel tracking, delivery timelines, shipping rates, prohibited items, and e-commerce logistics with SwiftHaul Logistics.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#102A43',
+                            orange: '#FF8A00',
+                            slate: '#243B53',
+                            grey: '#F5F7FA',
+                            light: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-brand-grey text-brand-slate min-h-screen flex flex-col justify-between">
+
+    <!-- Announcement Bar -->
+    <div class="bg-brand-navy text-slate-300 text-xs py-2 px-4 border-b border-slate-700">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center gap-4">
+                <span><i class="fa-solid fa-truck-fast text-brand-orange mr-1.5"></i> Fast, Reliable & Secure Nationwide Delivery</span>
+                <span class="hidden md:inline"><i class="fa-solid fa-phone text-brand-orange mr-1.5"></i> +234 800 794 3842</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="tracking.html" class="hover:text-brand-orange transition-colors"><i class="fa-solid fa-location-dot mr-1"></i> Quick Track</a>
+                <span class="text-slate-600">|</span>
+                <a href="contact.html" class="hover:text-brand-orange transition-colors">Support Hub</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="bg-white sticky top-0 z-40 shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand Logo -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 bg-brand-navy rounded-xl flex items-center justify-center text-brand-orange font-bold text-xl group-hover:scale-105 transition-transform shadow-md">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold text-brand-navy tracking-tight block leading-none">SwiftHaul</span>
+                        <span class="text-[10px] font-semibold text-brand-orange uppercase tracking-widest block mt-0.5">Logistics Nigeria</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-700">
+                    <a href="index.html" class="hover:text-brand-orange transition-colors">Home</a>
+                    <a href="about.html" class="hover:text-brand-orange transition-colors">About Us</a>
+                    <a href="services.html" class="hover:text-brand-orange transition-colors">Services</a>
+                    <a href="tracking.html" class="hover:text-brand-orange transition-colors">Track Shipment</a>
+                    <a href="request-delivery.html" class="hover:text-brand-orange transition-colors">Book Delivery</a>
+                    <a href="quote.html" class="hover:text-brand-orange transition-colors">Get Quote</a>
+                    <a href="faq.html" class="text-brand-orange font-bold">FAQ</a>
+                    <a href="contact.html" class="hover:text-brand-orange transition-colors">Contact</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="hidden lg:flex items-center gap-3">
+                    <a href="request-delivery.html" class="bg-brand-orange text-white px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-orange-600 transition-colors shadow-md shadow-orange-500/10">
+                        Request Pickup
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-brand-navy text-2xl p-2 rounded-lg hover:bg-slate-100">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-drawer" class="hidden lg:hidden bg-white border-b border-slate-200 px-6 py-6">
+            <div class="flex flex-col gap-4 text-base font-medium">
+                <a href="index.html" class="hover:text-brand-orange">Home</a>
+                <a href="about.html" class="hover:text-brand-orange">About Us</a>
+                <a href="services.html" class="hover:text-brand-orange">Services</a>
+                <a href="tracking.html" class="hover:text-brand-orange">Track Shipment</a>
+                <a href="request-delivery.html" class="hover:text-brand-orange">Request Delivery</a>
+                <a href="quote.html" class="hover:text-brand-orange">Get Quote</a>
+                <a href="faq.html" class="text-brand-orange font-bold">FAQ</a>
+                <a href="contact.html" class="hover:text-brand-orange">Contact</a>
+                <a href="request-delivery.html" class="bg-brand-orange text-white text-center py-3 rounded-lg font-bold">
+                    Book Delivery
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="bg-brand-navy text-white py-14 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-80 h-80 bg-brand-orange/10 rounded-full blur-3xl"></div>
+            <div class="max-w-4xl mx-auto text-center relative z-10">
+                <span class="inline-block px-3 py-1 bg-brand-orange/20 text-brand-orange rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-brand-orange/30">
+                    Knowledge Base & Help Center
+                </span>
+                <h1 class="text-3xl sm:text-4xl font-extrabold mb-4">How Can We Help You Today?</h1>
+                <p class="text-slate-300 text-base max-w-2xl mx-auto mb-8">
+                    Browse answers to frequently asked questions about tracking numbers, pickup bookings, shipping tariffs, delivery timelines, and restricted packages.
+                </p>
+
+                <!-- Search Bar -->
+                <div class="relative max-w-xl mx-auto">
+                    <input type="text" id="faq-search" placeholder="Search questions (e.g., tracking, payment, timelines)..." 
+                        class="w-full pl-12 pr-4 py-4 rounded-xl text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange shadow-xl">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Filter Tabs -->
+        <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-20">
+            <div class="bg-white p-2 rounded-2xl shadow-lg border border-slate-100 flex flex-wrap gap-2 justify-center">
+                <button class="faq-tab active px-4 py-2.5 rounded-xl text-sm font-semibold bg-brand-navy text-white transition-colors" data-category="all">
+                    All Questions
+                </button>
+                <button class="faq-tab px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-colors" data-category="tracking">
+                    <i class="fa-solid fa-route mr-1.5 text-brand-orange"></i> Tracking & Status
+                </button>
+                <button class="faq-tab px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-colors" data-category="booking">
+                    <i class="fa-solid fa-box mr-1.5 text-brand-orange"></i> Booking & Payments
+                </button>
+                <button class="faq-tab px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-colors" data-category="policies">
+                    <i class="fa-solid fa-shield-halved mr-1.5 text-brand-orange"></i> Restrictions & Claims
+                </button>
+                <button class="faq-tab px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-colors" data-category="ecommerce">
+                    <i class="fa-solid fa-store mr-1.5 text-brand-orange"></i> E-Commerce & COD
+                </button>
+            </div>
+        </section>
+
+        <!-- Accordion FAQ Container -->
+        <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div id="faq-container" class="space-y-4">
+
+                <!-- FAQ 1 -->
+                <div class="faq-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" data-category="tracking" data-keywords="track tracking number find code status">
+                    <button class="faq-header w-full px-6 py-5 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
+                        <span class="font-bold text-slate-800 text-base">How do I track my shipment in real-time?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-sm text-slate-600 border-t border-slate-100 pt-4 leading-relaxed">
+                        You can track your package by entering your tracking number (e.g., <span class="font-semibold text-brand-navy">SHL202610001</span>) into our 
+                        <a href="tracking.html" class="text-brand-orange underline font-semibold">Track Shipment Portal</a>. You will receive live milestone updates, current dispatch city, estimated time of arrival, and driver contact details when out for delivery.
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" data-category="booking" data-keywords="book booking request delivery price cost rate quote">
+                    <button class="faq-header w-full px-6 py-5 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
+                        <span class="font-bold text-slate-800 text-base">How can I schedule a package pickup?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-sm text-slate-600 border-t border-slate-100 pt-4 leading-relaxed">
+                        To request a pickup, visit our <a href="request-delivery.html" class="text-brand-orange underline font-semibold">Book Delivery Page</a>, fill in your pickup address, recipient details, and package weight, and select your preferred pickup time. A courier rider will be assigned immediately.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" data-category="booking" data-keywords="delivery timeline how long express same day inter-state">
+                    <button class="faq-header w-full px-6 py-5 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
+                        <span class="font-bold text-slate-800 text-base">What are your standard delivery timelines?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-sm text-slate-600 border-t border-slate-100 pt-4 leading-relaxed">
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Same-Day Express (Intra-City):</strong> Delivered within 2–6 hours in Lagos, Abuja, and Port Harcourt.</li>
+                            <li><strong>Inter-State Standard:</strong> Delivered within 24 to 48 hours nationwide.</li>
+                            <li><strong>International Express Freight:</strong> 3 to 5 business days via air freight partners.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" data-category="policies" data-keywords="prohibited restricted items dangerous goods insurance claim loss damage">
+                    <button class="faq-header w-full px-6 py-5 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
+                        <span class="font-bold text-slate-800 text-base">What items are prohibited from shipping?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-sm text-slate-600 border-t border-slate-100 pt-4 leading-relaxed">
+                        SwiftHaul strictly prohibits shipping firearms, explosives, hazardous chemicals, illegal drugs, counterfeit currency, and perishable goods without specialized cold-chain packaging. For a detailed list, check our 
+                        <a href="shipping.html" class="text-brand-orange underline font-semibold">Shipping Guidelines</a>.
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" data-category="ecommerce" data-keywords="cash on delivery cod merchant ecommerce store payment payout">
+                    <button class="faq-header w-full px-6 py-5 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
+                        <span class="font-bold text-slate-800 text-base">Do you support Cash on Delivery (COD) for e-commerce stores?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-sm text-slate-600 border-t border-slate-100 pt-4 leading-relaxed">
+                        Yes! We offer Cash on Delivery (COD) and POS-at-Doorstep collection for verified merchant accounts across Lagos, Abuja, and Port Harcourt with automated 24-hour remittance cycles into your registered corporate bank account.
+                    </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="faq-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" data-category="policies" data-keywords="damaged lost package insurance claim compensation refund">
+                    <button class="faq-header w-full px-6 py-5 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
+                        <span class="font-bold text-slate-800 text-base">What happens if a package is lost or damaged?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-sm text-slate-600 border-t border-slate-100 pt-4 leading-relaxed">
+                        All shipments booked through SwiftHaul carry baseline protection insurance up to ₦50,000. In the rare event of damage or loss, file a claim through our customer support desk within 7 days of pickup with photo evidence and proof of item value.
+                    </div>
+                </div>
+
+                <!-- FAQ 7 -->
+                <div class="faq-item bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden" data-category="tracking" data-keywords="change address destination edit receiver details contact">
+                    <button class="faq-header w-full px-6 py-5 text-left flex justify-between items-center hover:bg-slate-50 transition-colors">
+                        <span class="font-bold text-slate-800 text-base">Can I change the delivery address after dispatch?</span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-sm text-slate-600 border-t border-slate-100 pt-4 leading-relaxed">
+                        Yes, address rerouting is permitted provided the package has not reached the final "Out for Delivery" status. Contact customer support with your tracking ID to request an address modification. Note that inter-city rerouting may incur tariff adjustments.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Empty Search State -->
+            <div id="no-results" class="hidden text-center py-12 bg-white rounded-2xl border border-slate-200 my-4">
+                <i class="fa-solid fa-magnifying-glass-minus text-4xl text-slate-300 mb-3"></i>
+                <h3 class="font-bold text-slate-800 text-base">No Matching Questions Found</h3>
+                <p class="text-xs text-slate-500 mt-1 mb-4">Try searching with different terms or select a category tab above.</p>
+                <a href="contact.html" class="inline-block bg-brand-navy text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-slate-800 transition-colors">
+                    Ask Support Directly
+                </a>
+            </div>
+        </section>
+
+        <!-- Help Banner CTA -->
+        <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+            <div class="bg-gradient-to-r from-brand-navy to-slate-900 rounded-2xl p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
+                <div class="relative z-10">
+                    <h3 class="text-xl font-bold mb-2">Still Have Questions?</h3>
+                    <p class="text-slate-300 text-sm max-w-md">Our friendly customer care team is available 24/7 to assist with tracking, billing inquiries, and special freight setup.</p>
+                </div>
+                <div class="flex flex-wrap gap-3 relative z-10 w-full md:w-auto">
+                    <a href="contact.html" class="bg-brand-orange text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-orange-600 transition-colors shadow-md text-center flex-1 md:flex-none">
+                        Contact Support
+                    </a>
+                    <a href="https://wa.me/2348007943842" target="_blank" class="bg-green-600 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-green-700 transition-colors shadow-md text-center flex-1 md:flex-none">
+                        <i class="fa-brands fa-whatsapp mr-1.5"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-navy text-slate-300 pt-12 pb-6 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-10">
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 bg-brand-orange text-white rounded-lg flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <span class="text-xl font-extrabold text-white tracking-tight">SwiftHaul Logistics</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                        Nigeria's top-tier courier service provider specializing in express intra-city dispatch, inter-state logistics, e-commerce fulfillment, and international air freight.
+                    </p>
+                    <div class="flex items-center gap-3 text-slate-400">
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fa-brands fa-twitter text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fa-brands fa-instagram text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-orange hover:text-white transition-colors"><i class="fa-brands fa-linkedin-in text-xs"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Quick Links</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="index.html" class="hover:text-brand-orange transition-colors">Home</a></li>
+                        <li><a href="about.html" class="hover:text-brand-orange transition-colors">About SwiftHaul</a></li>
+                        <li><a href="services.html" class="hover:text-brand-orange transition-colors">Logistics Services</a></li>
+                        <li><a href="tracking.html" class="hover:text-brand-orange transition-colors">Track Shipment</a></li>
+                        <li><a href="quote.html" class="hover:text-brand-orange transition-colors">Rate Calculator</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Help & Legal</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="faq.html" class="text-brand-orange font-bold">FAQ</a></li>
+                        <li><a href="contact.html" class="hover:text-brand-orange transition-colors">Support Center</a></li>
+                        <li><a href="shipping.html" class="hover:text-brand-orange transition-colors">Shipping Rules</a></li>
+                        <li><a href="privacy.html" class="hover:text-brand-orange transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-brand-orange transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Headquarters</h4>
+                    <p class="text-xs text-slate-400 mb-2">Plot 14 Commercial Avenue, Sabo Yaba, Lagos State, Nigeria</p>
+                    <p class="text-xs text-slate-400 mb-2"><i class="fa-solid fa-envelope text-brand-orange mr-1"></i> support@swifthaul.ng</p>
+                    <p class="text-xs text-slate-400"><i class="fa-solid fa-phone text-brand-orange mr-1"></i> +234 800 794 3842</p>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-6 text-center text-xs text-slate-500">
+                <p>&copy; 2026 SwiftHaul Logistics Nigeria Limited. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JS Script -->
+    <script>
+        // Mobile Drawer Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const drawer = document.getElementById('mobile-drawer');
+
+        menuBtn.addEventListener('click', () => {
+            drawer.classList.toggle('hidden');
+        });
+
+        // FAQ Accordions
+        const faqHeaders = document.querySelectorAll('.faq-header');
+        faqHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const body = header.nextElementSibling;
+                const icon = header.querySelector('i');
+                const isHidden = body.classList.contains('hidden');
+
+                // Toggle visibility
+                if (isHidden) {
+                    body.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                } else {
+                    body.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
+                }
+            });
+        });
+
+        // Category Tab Filter
+        const tabs = document.querySelectorAll('.faq-tab');
+        const items = document.querySelectorAll('.faq-item');
+        const noResults = document.getElementById('no-results');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update active tab style
+                tabs.forEach(t => {
+                    t.classList.remove('bg-brand-navy', 'text-white', 'active');
+                    t.classList.add('text-slate-600');
+                });
+                tab.classList.add('bg-brand-navy', 'text-white', 'active');
+                tab.classList.remove('text-slate-600');
+
+                const cat = tab.getAttribute('data-category');
+                filterFAQ();
+            });
+        });
+
+        // Live Search Filter
+        const searchInput = document.getElementById('faq-search');
+        searchInput.addEventListener('input', filterFAQ);
+
+        function filterFAQ() {
+            const query = searchInput.value.toLowerCase().trim();
+            const activeTab = document.querySelector('.faq-tab.active').getAttribute('data-category');
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const category = item.getAttribute('data-category');
+                const keywords = item.getAttribute('data-keywords').toLowerCase();
+                const questionText = item.querySelector('.faq-header').innerText.toLowerCase();
+                const bodyText = item.querySelector('.faq-body').innerText.toLowerCase();
+
+                const matchesCategory = (activeTab === 'all' || category === activeTab);
+                const matchesQuery = query === '' || keywords.includes(query) || questionText.includes(query) || bodyText.includes(query);
+
+                if (matchesCategory && matchesQuery) {
+                    item.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

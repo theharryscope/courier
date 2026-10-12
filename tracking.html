@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Shipment - SwiftHaul Logistics Nigeria</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#F0F4F8',
+                            100: '#D9E2EC',
+                            700: '#243B53',
+                            800: '#102A43',
+                            900: '#091A2C',
+                        },
+                        orange: {
+                            500: '#FF8A00',
+                            600: '#E07800',
+                            700: '#B85E00',
+                        },
+                        slateBg: '#F5F7FA',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F5F7FA; color: #243B53; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(16, 42, 67, 0.95) 0%, rgba(9, 26, 44, 0.97) 100%), 
+                        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #F5F7FA; }
+        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+        @media print {
+            header, footer, .hero-bg, .no-print { display: none !important; }
+            body { background: white; color: black; }
+            #trackingResults { display: block !important; box-shadow: none !important; border: none !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-orange-500 selection:text-white relative">
+
+    <!-- Top Bar -->
+    <div class="bg-navy-900 text-slate-300 text-xs md:text-sm py-2 px-4 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-bolt text-orange-500"></i> Nigeria's Premier Express Courier & Freight Network</span>
+                <span class="hidden md:inline text-navy-700">|</span>
+                <span class="hidden md:inline-flex items-center gap-1.5"><i class="fa-solid fa-clock text-orange-500"></i> Hours: 24/7 Operations</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="tel:+234700794384281" class="hover:text-orange-500 transition"><i class="fa-solid fa-phone text-orange-500 mr-1"></i> +234 (0) 700 SWIFTHAUL</a>
+                <span class="text-navy-700">|</span>
+                <a href="mailto:support@swifthaul.ng" class="hover:text-orange-500 transition"><i class="fa-regular fa-envelope mr-1"></i> support@swifthaul.ng</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-navy-800 text-white shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 bg-orange-500 rounded-xl flex items-center justify-center text-navy-900 text-2xl font-black shadow-lg transform group-hover:scale-105 transition">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold tracking-tight text-white font-heading">Swift<span class="text-orange-500">Haul</span></span>
+                        <span class="block text-[10px] text-slate-400 tracking-widest uppercase font-semibold">Logistics Nigeria</span>
+                    </div>
+                </a>
+
+                <!-- Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-xs xl:text-sm font-medium">
+                    <a href="index.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Home</a>
+                    <a href="about.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">About Us</a>
+                    <a href="services.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Services</a>
+                    <a href="tracking.html" class="px-3 py-2 rounded-lg text-orange-400 font-bold bg-navy-700/80 transition">Track Shipment</a>
+                    <a href="request-delivery.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Request a Delivery</a>
+                    <a href="contact.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Contact</a>
+                </nav>
+
+                <!-- Navigation CTAs -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="quote.html" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-orange-500/20 transform hover:-translate-y-0.5 transition flex items-center text-sm">
+                        <i class="fa-solid fa-calculator mr-2"></i> Get Instant Quote
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden text-slate-200 hover:text-white p-2 rounded-lg hover:bg-navy-700 focus:outline-none">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-navy-900 border-t border-navy-700 px-4 pt-3 pb-6 space-y-2">
+            <a href="index.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Home</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="about.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>About Us</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="services.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Services</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="tracking.html" class="w-full text-left px-3 py-2.5 rounded-lg bg-orange-500/10 text-orange-400 font-bold flex items-center justify-between"><span>Track Shipment</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="request-delivery.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Request a Delivery</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="quote.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Get Quote</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="contact.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Contact Us</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="faq.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>FAQs</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+        <!-- Tracking Search Hero Section -->
+        <section class="hero-bg text-white py-16 md:py-24 relative">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <nav class="flex justify-center items-center gap-2 text-xs text-slate-300 font-medium uppercase tracking-wider mb-4">
+                    <a href="index.html" class="hover:text-orange-400 transition">Home</a>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-orange-500"></i>
+                    <span class="text-orange-400">Track Shipment</span>
+                </nav>
+
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading leading-tight">
+                    Real-Time <span class="text-orange-500">Shipment Telemetry</span>
+                </h1>
+                <p class="text-slate-300 text-sm sm:text-lg max-w-2xl mx-auto mt-3 leading-relaxed">
+                    Enter your SwiftHaul waybill or tracking ID to monitor parcel transit status, estimated delivery windows, and dispatch telemetry across Nigeria.
+                </p>
+
+                <!-- Search Input Box -->
+                <div class="mt-8 max-w-2xl mx-auto">
+                    <form id="trackingForm" onsubmit="handleTrackingSearch(event)" class="relative flex flex-col sm:flex-row gap-2 bg-white/10 p-2.5 rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl">
+                        <div class="relative flex-grow">
+                            <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 transform -translate-y-1/2 text-slate-400 text-lg"></i>
+                            <input type="text" id="trackingInput" placeholder="e.g. SHL202610001" required
+                                class="w-full pl-12 pr-4 py-3.5 bg-white text-navy-900 placeholder-slate-400 font-mono text-sm sm:text-base font-semibold rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 shadow-inner uppercase tracking-wider">
+                        </div>
+                        <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg transition flex items-center justify-center text-sm gap-2 whitespace-nowrap">
+                            <i class="fa-solid fa-location-crosshairs"></i> Track Package
+                        </button>
+                    </form>
+
+                    <!-- Quick Sample Testing Pills -->
+                    <div class="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs">
+                        <span class="text-slate-400 font-medium mr-1"><i class="fa-solid fa-vial text-orange-400"></i> Demo Codes:</span>
+                        <button onclick="setSampleTracking('SHL202610001')" class="bg-navy-800/80 hover:bg-orange-500 text-slate-200 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700 transition font-mono">
+                            SHL202610001 <span class="text-[10px] text-orange-400 group-hover:text-white">(In Transit)</span>
+                        </button>
+                        <button onclick="setSampleTracking('SHL202610002')" class="bg-navy-800/80 hover:bg-orange-500 text-slate-200 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700 transition font-mono">
+                            SHL202610002 <span class="text-[10px] text-orange-400 group-hover:text-white">(Out for Delivery)</span>
+                        </button>
+                        <button onclick="setSampleTracking('SHL202610003')" class="bg-navy-800/80 hover:bg-orange-500 text-slate-200 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700 transition font-mono">
+                            SHL202610003 <span class="text-[10px] text-emerald-400 group-hover:text-white">(Delivered)</span>
+                        </button>
+                        <button onclick="setSampleTracking('SHL202610004')" class="bg-navy-800/80 hover:bg-orange-500 text-slate-200 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700 transition font-mono">
+                            SHL202610004 <span class="text-[10px] text-sky-400 group-hover:text-white">(Confirmed)</span>
+                        </button>
+                        <button onclick="setSampleTracking('SHL202610005')" class="bg-navy-800/80 hover:bg-orange-500 text-slate-200 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700 transition font-mono">
+                            SHL202610005 <span class="text-[10px] text-rose-400 group-hover:text-white">(Exception)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Container Section -->
+        <section class="py-12 bg-slateBg">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Loading Spinner State -->
+                <div id="loadingState" class="hidden text-center py-16 bg-white rounded-3xl shadow-sm border border-slate-200 my-4">
+                    <div class="inline-block animate-spin text-orange-500 text-5xl mb-4">
+                        <i class="fa-solid fa-circle-notch"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-800 font-heading">Fetching Live Telemetry Data...</h3>
+                    <p class="text-slate-500 text-xs mt-1">Connecting to SwiftHaul Logistics Central Database</p>
+                </div>
+
+                <!-- Error Alert Box -->
+                <div id="errorState" class="hidden bg-rose-50 border border-rose-200 rounded-3xl p-8 text-center my-4">
+                    <div class="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-rose-900 font-heading">Tracking ID Not Found</h3>
+                    <p id="errorMessage" class="text-rose-700 text-xs sm:text-sm mt-2 max-w-md mx-auto">
+                        No shipment record matching this ID was found in our database. Please double check the number or contact customer support.
+                    </p>
+                    <div class="mt-6 flex justify-center gap-3">
+                        <button onclick="setSampleTracking('SHL202610001')" class="bg-rose-600 hover:bg-rose-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition">
+                            Try Demo ID (SHL202610001)
+                        </button>
+                        <a href="contact.html" class="bg-white border border-rose-300 text-rose-800 font-bold px-5 py-2.5 rounded-xl text-xs hover:bg-rose-100 transition">
+                            Contact Support Desk
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tracking Results Dashboard (Revealed on Valid Tracking Search) -->
+                <div id="trackingResults" class="hidden space-y-8">
+
+                    <!-- Package Header Card -->
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-md">
+                        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 pb-6 border-b border-slate-200">
+                            <div>
+                                <div class="flex items-center gap-3 flex-wrap">
+                                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Tracking Waybill:</span>
+                                    <span id="resTrackingId" class="text-xl sm:text-2xl font-black font-mono text-navy-900">SHL202610001</span>
+                                    <span id="resStatusBadge" class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-orange-500/10 text-orange-600 border border-orange-200">
+                                        In Transit
+                                    </span>
+                                </div>
+                                <p id="resServiceType" class="text-xs sm:text-sm text-slate-500 mt-1 font-medium">
+                                    <i class="fa-solid fa-box text-orange-500 mr-1.5"></i> Express Inter-State Courier (Doorstep)
+                                </p>
+                            </div>
+
+                            <!-- ETA & Origin/Destination Badge -->
+                            <div class="bg-navy-900 text-white p-4 sm:p-5 rounded-2xl w-full lg:w-auto flex items-center justify-between gap-6 shadow-inner">
+                                <div>
+                                    <span class="text-[10px] uppercase text-slate-400 font-semibold block tracking-wider">Estimated Delivery</span>
+                                    <span id="resEta" class="text-sm sm:text-base font-extrabold text-orange-400 font-heading">Oct 14, 2026 • 2:00 PM</span>
+                                </div>
+                                <div class="text-right border-l border-navy-700 pl-6">
+                                    <span class="text-[10px] uppercase text-slate-400 font-semibold block tracking-wider">Route Corridor</span>
+                                    <span id="resRoute" class="text-xs sm:text-sm font-bold text-slate-200">Lagos → Abuja</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Toolbar -->
+                        <div class="pt-4 flex flex-wrap items-center justify-between gap-3 no-print">
+                            <div class="flex items-center gap-2 text-xs text-slate-500">
+                                <i class="fa-solid fa-rotate-right text-orange-500 animate-spin"></i>
+                                <span>Telemetry synced live</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <button onclick="copyTrackingLink()" class="bg-slate-100 hover:bg-slate-200 text-navy-800 text-xs font-bold px-4 py-2 rounded-xl transition flex items-center gap-1.5">
+                                    <i class="fa-regular fa-copy text-orange-500"></i> Copy Share Link
+                                </button>
+                                <button onclick="window.print()" class="bg-slate-100 hover:bg-slate-200 text-navy-800 text-xs font-bold px-4 py-2 rounded-xl transition flex items-center gap-1.5">
+                                    <i class="fa-solid fa-print text-navy-700"></i> Print Waybill / Receipt
+                                </button>
+                                <a href="contact.html" class="bg-slate-100 hover:bg-slate-200 text-rose-700 text-xs font-bold px-4 py-2 rounded-xl transition flex items-center gap-1.5">
+                                    <i class="fa-solid fa-flag"></i> Report Issue
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8-Stage Visual Progress Stepper -->
+                    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200 overflow-x-auto">
+                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">
+                            <i class="fa-solid fa-route text-orange-500 mr-2"></i> Shipment Stage Telemetry
+                        </h3>
+                        
+                        <div id="stepperContainer" class="min-w-[700px] flex items-center justify-between relative py-4">
+                            <!-- Stepper dynamic items injected via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Two Column Section: Package Specs & Timeline -->
+                    <div class="grid lg:grid-cols-12 gap-8">
+                        
+                        <!-- Left Specs Box -->
+                        <div class="lg:col-span-5 space-y-6">
+                            <!-- Package Specs Card -->
+                            <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-200 space-y-4">
+                                <h3 class="text-sm font-bold text-navy-800 uppercase tracking-wider border-b border-slate-100 pb-3 flex items-center justify-between">
+                                    <span><i class="fa-solid fa-circle-info text-orange-500 mr-2"></i> Shipment Details</span>
+                                    <span id="resPkgCategory" class="bg-slate-100 text-navy-800 text-[10px] px-2.5 py-1 rounded-md font-bold">Electronics</span>
+                                </h3>
+
+                                <div class="space-y-3 text-xs">
+                                    <div class="flex justify-between py-1.5 border-b border-slate-100">
+                                        <span class="text-slate-500">Declared Weight:</span>
+                                        <span id="resWeight" class="font-bold text-navy-900">4.5 kg</span>
+                                    </div>
+                                    <div class="flex justify-between py-1.5 border-b border-slate-100">
+                                        <span class="text-slate-500">Sender:</span>
+                                        <span id="resSender" class="font-bold text-navy-900">TechHub Ikeja, Lagos</span>
+                                    </div>
+                                    <div class="flex justify-between py-1.5 border-b border-slate-100">
+                                        <span class="text-slate-500">Recipient:</span>
+                                        <span id="resRecipient" class="font-bold text-navy-900">Chidi O. (Garki 2, Abuja)</span>
+                                    </div>
+                                    <div class="flex justify-between py-1.5 border-b border-slate-100">
+                                        <span class="text-slate-500">Security Verification:</span>
+                                        <span id="resOtpStatus" class="font-bold text-emerald-600"><i class="fa-solid fa-shield-halved mr-1"></i> OTP Required on Delivery</span>
+                                    </div>
+                                    <div class="flex justify-between py-1.5">
+                                        <span class="text-slate-500">Payment Status:</span>
+                                        <span id="resPayment" class="font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Prepaid</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Assigned Dispatch Rider Card -->
+                            <div class="bg-navy-900 text-white rounded-3xl p-6 shadow-md border border-navy-800 space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-orange-400 uppercase tracking-widest">Assigned Courier</span>
+                                    <span class="bg-orange-500/20 text-orange-400 text-[10px] px-2 py-0.5 rounded font-semibold">Active Fleet</span>
+                                </div>
+
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-navy-900 text-xl font-bold">
+                                        <i class="fa-solid fa-user-shield"></i>
+                                    </div>
+                                    <div>
+                                        <h4 id="resRiderName" class="font-bold text-sm text-white font-heading">Emmanuel Adebayo</h4>
+                                        <p id="resRiderVehicle" class="text-xs text-slate-400">Dispatch Bike #402 (Abuja Hub)</p>
+                                    </div>
+                                </div>
+
+                                <div class="pt-2">
+                                    <a id="resRiderPhone" href="tel:+234800000000" class="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-2">
+                                        <i class="fa-solid fa-phone"></i> Contact Rider Directly
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Event Log Timeline Box -->
+                        <div class="lg:col-span-7">
+                            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200">
+                                <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+                                    <h3 class="text-sm font-bold text-navy-800 uppercase tracking-wider">
+                                        <i class="fa-solid fa-clock-rotate-left text-orange-500 mr-2"></i> Checkpoint History Log
+                                    </h3>
+                                    <span class="text-xs text-slate-400">All timestamps in WAT (+1 GMT)</span>
+                                </div>
+
+                                <!-- Timeline Items Container -->
+                                <div id="timelineContainer" class="relative pl-6 space-y-6 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-slate-200">
+                                    <!-- Dynamic timeline content injected via JS -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Tracking FAQs Accordion Section -->
+        <section class="py-16 bg-white border-t border-slate-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-orange-500 font-bold uppercase text-xs tracking-widest">Tracking Help</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-800 font-heading mt-1">Frequently Asked Questions</h2>
+                    <p class="text-slate-500 text-xs sm:text-sm mt-2">Find answers regarding tracking updates, delivery delays, and security codes.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq('faq1')" class="w-full p-5 text-left bg-slate-50 font-bold text-navy-800 text-sm flex justify-between items-center hover:bg-slate-100 transition">
+                            <span>How often is package telemetry updated?</span>
+                            <i id="faq1-icon" class="fa-solid fa-chevron-down text-orange-500 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="faq1" class="hidden p-5 text-xs sm:text-sm text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
+                            Telemetry updates in real-time. Intra-city dispatch bike riders update status via handheld GPS terminals at every milestone, while inter-state haulage cargo updates at every regional hub scan.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq('faq2')" class="w-full p-5 text-left bg-slate-50 font-bold text-navy-800 text-sm flex justify-between items-center hover:bg-slate-100 transition">
+                            <span>What should I do if my OTP code is missing?</span>
+                            <i id="faq2-icon" class="fa-solid fa-chevron-down text-orange-500 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="faq2" class="hidden p-5 text-xs sm:text-sm text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
+                            The security OTP code is sent via SMS to the recipient's phone number as soon as the package status changes to "Out for Delivery". If you haven't received it, click "Report Issue" or contact your assigned rider.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq('faq3')" class="w-full p-5 text-left bg-slate-50 font-bold text-navy-800 text-sm flex justify-between items-center hover:bg-slate-100 transition">
+                            <span>Where do I find my SwiftHaul tracking number?</span>
+                            <i id="faq3-icon" class="fa-solid fa-chevron-down text-orange-500 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="faq3" class="hidden p-5 text-xs sm:text-sm text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
+                            Your tracking number is listed at the top right of your physical waybill receipt and is also sent via SMS/Email right after booking confirmation (e.g. SHL202610001).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-navy-900 text-slate-300 border-t border-navy-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center text-navy-900 text-xl font-black">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <span class="text-2xl font-bold tracking-tight text-white font-heading">Swift<span class="text-orange-500">Haul</span></span>
+                    </a>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                        SwiftHaul Logistics is Nigeria's premier technology-driven courier platform providing same-day urban dispatch, inter-state heavy haulage, and global air cargo shipping.
+                    </p>
+                    
+                    <!-- Newsletter Form -->
+                    <div class="pt-2">
+                        <span class="text-xs text-slate-300 font-semibold block mb-2">Subscribe for Logistics Insights</span>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed successfully!');" class="flex gap-2 max-w-sm">
+                            <input type="email" placeholder="Enter your email" required class="bg-navy-800 border border-navy-700 text-xs px-3 py-2 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 flex-grow">
+                            <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold px-4 py-2 rounded-lg transition">Join</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Main Pages</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="index.html" class="hover:text-orange-500 transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-orange-500 transition">About Company</a></li>
+                        <li><a href="services.html" class="hover:text-orange-500 transition">Our Services</a></li>
+                        <li><a href="tracking.html" class="text-orange-400 font-bold">Track Package</a></li>
+                        <li><a href="contact.html" class="hover:text-orange-500 transition">Contact Desk</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Tools & Booking</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="request-delivery.html" class="hover:text-orange-500 transition">Request a Delivery</a></li>
+                        <li><a href="quote.html" class="hover:text-orange-500 transition">Rate Calculator</a></li>
+                        <li><a href="faq.html" class="hover:text-orange-500 transition">Help & FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Legal Policies</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="shipping.html" class="hover:text-orange-500 transition">Shipping Policy</a></li>
+                        <li><a href="privacy.html" class="hover:text-orange-500 transition">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-orange-500 transition">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-navy-800 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <div>&copy; 2026 SwiftHaul Logistics Nigeria Ltd. All rights reserved.</div>
+                <div class="flex items-center space-x-4 text-slate-400">
+                    <a href="#" class="hover:text-orange-500 transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition"><i class="fa-brands fa-instagram text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Actions -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+        <a href="https://wa.me/2348129990000" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition" title="WhatsApp Support">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </a>
+        <button onclick="scrollToTop()" id="backToTopBtn" class="hidden w-12 h-12 bg-navy-800 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition border border-slate-600" title="Back to Top">
+            <i class="fa-solid fa-arrow-up text-base"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        /* Sample Tracking Database Engine */
+        const trackingDatabase = {
+            'SHL202610001': {
+                id: 'SHL202610001',
+                status: 'In Transit',
+                badgeStyle: 'bg-orange-500/10 text-orange-600 border-orange-200',
+                service: 'Express Inter-State Cargo',
+                origin: 'Lagos',
+                destination: 'Abuja',
+                route: 'Lagos → Abuja',
+                eta: 'Oct 14, 2026 • 2:00 PM',
+                weight: '12.8 kg',
+                category: 'Industrial Parts',
+                sender: 'Adesanya Logistics Terminal, Ikeja, Lagos',
+                recipient: 'Babatunde O. (Wuse II, Abuja)',
+                otpStatus: 'OTP Required on Handover',
+                payment: 'Prepaid',
+                rider: 'Ibrahim Musa',
+                vehicle: 'Heavy Truck Haulage #801',
+                phone: '+2348031234567',
+                currentStageIndex: 4, // 0 to 7
+                timeline: [
+                    { time: 'Oct 12, 2026 - 06:15 PM', title: 'In Transit - Express Highway', location: 'Lokoja Highway Hub, Kogi State', status: 'completed' },
+                    { time: 'Oct 12, 2026 - 11:30 AM', title: 'Departed Regional Sorting Facility', location: 'Lagos Central Hub, Ikeja', status: 'completed' },
+                    { time: 'Oct 11, 2026 - 04:00 PM', title: 'Security Scan & Weight Verification', location: 'Ikeja Dispatch Station', status: 'completed' },
+                    { time: 'Oct 11, 2026 - 01:20 PM', title: 'Picked Up by SwiftHaul Courier', location: 'Ikeja Industrial Estate', status: 'completed' },
+                    { time: 'Oct 11, 2026 - 09:00 AM', title: 'Waybill Generated & Order Confirmed', location: 'Digital Dispatch System', status: 'completed' }
+                ]
+            },
+            'SHL202610002': {
+                id: 'SHL202610002',
+                status: 'Out for Delivery',
+                badgeStyle: 'bg-sky-500/10 text-sky-600 border-sky-200',
+                service: 'Same-Day Urban Express Rider',
+                origin: 'Ikeja',
+                destination: 'Victoria Island',
+                route: 'Ikeja → Victoria Island, Lagos',
+                eta: 'Today • 3:30 PM',
+                weight: '1.2 kg',
+                category: 'Legal Documents',
+                sender: 'Chambers & Co., Ikeja GRA',
+                recipient: 'Kemi A. (Adeola Odeku, VI, Lagos)',
+                otpStatus: 'OTP SMS Sent to Recipient',
+                payment: 'Pay on Delivery (POS)',
+                rider: 'Seyi Ogundipe',
+                vehicle: 'Express Bike #114',
+                phone: '+2348029876543',
+                currentStageIndex: 6,
+                timeline: [
+                    { time: 'Oct 12, 2026 - 01:45 PM', title: 'Out for Final Delivery with Rider', location: 'Victoria Island Delivery Zone', status: 'completed' },
+                    { time: 'Oct 12, 2026 - 11:00 AM', title: 'Arrived at Local Distribution Depot', location: 'Lagos Island Hub', status: 'completed' },
+                    { time: 'Oct 12, 2026 - 09:30 AM', title: 'Package Dispatched from Origin', location: 'Ikeja GRA Office', status: 'completed' },
+                    { time: 'Oct 12, 2026 - 08:15 AM', title: 'Pickup Confirmed', location: 'Ikeja GRA Office', status: 'completed' }
+                ]
+            },
+            'SHL202610003': {
+                id: 'SHL202610003',
+                status: 'Delivered',
+                badgeStyle: 'bg-emerald-500/10 text-emerald-600 border-emerald-200',
+                service: 'Inter-State Express Delivery',
+                origin: 'Lagos',
+                destination: 'Port Harcourt',
+                route: 'Lagos → Port Harcourt',
+                eta: 'Delivered Oct 10, 2026',
+                weight: '5.0 kg',
+                category: 'Fashion & Apparel',
+                sender: 'Zoe Fashion Hub, Lekki, Lagos',
+                recipient: 'Grace N. (GRA Phase 2, Port Harcourt)',
+                otpStatus: 'Verified by OTP (Pin: 8821)',
+                payment: 'Prepaid',
+                rider: 'Chidi Nwosu',
+                vehicle: 'PH Central Bike #22',
+                phone: '+2348051112233',
+                currentStageIndex: 7,
+                timeline: [
+                    { time: 'Oct 10, 2026 - 02:15 PM', title: 'Delivered & Digital Signature Received', location: 'GRA Phase 2, Port Harcourt', status: 'completed' },
+                    { time: 'Oct 10, 2026 - 09:00 AM', title: 'Out for Delivery', location: 'Port Harcourt Main Hub', status: 'completed' },
+                    { time: 'Oct 09, 2026 - 05:40 PM', title: 'Arrived at Destination Hub', location: 'Aba Road Hub, Port Harcourt', status: 'completed' },
+                    { time: 'Oct 08, 2026 - 08:00 AM', title: 'Shipment Order Created', location: 'Lekki Station, Lagos', status: 'completed' }
+                ]
+            },
+            'SHL202610004': {
+                id: 'SHL202610004',
+                status: 'Pickup Confirmed',
+                badgeStyle: 'bg-indigo-500/10 text-indigo-600 border-indigo-200',
+                service: 'Heavy Commercial Freight',
+                origin: 'Kano',
+                destination: 'Ibadan',
+                route: 'Kano → Ibadan',
+                eta: 'Oct 16, 2026 • 10:00 AM',
+                weight: '250.0 kg',
+                category: 'Agricultural Produce',
+                sender: 'Northern Grain Merchants, Kano',
+                recipient: 'Bodija Market Distribution, Ibadan',
+                otpStatus: 'OTP Scheduled',
+                payment: 'Prepaid',
+                rider: 'Aminu Bello',
+                vehicle: 'Cargo Truck Trailer #90',
+                phone: '+2348064445566',
+                currentStageIndex: 1,
+                timeline: [
+                    { time: 'Oct 12, 2026 - 10:00 AM', title: 'Package Received at Origin Depot', location: 'Kano Commercial Terminal', status: 'completed' },
+                    { time: 'Oct 12, 2026 - 07:30 AM', title: 'Pickup Booking Requested', location: 'Kano Commercial Hub', status: 'completed' }
+                ]
+            },
+            'SHL202610005': {
+                id: 'SHL202610005',
+                status: 'Delivery Exception',
+                badgeStyle: 'bg-rose-500/10 text-rose-600 border-rose-200',
+                service: 'E-Commerce Cash On Delivery',
+                origin: 'Lagos',
+                destination: 'Enugu',
+                route: 'Lagos → Enugu',
+                eta: 'Rescheduled for Tomorrow',
+                weight: '2.1 kg',
+                category: 'Gadgets',
+                sender: 'GadgetZone Nigeria, Computer Village',
+                recipient: 'Emeka K. (Independence Layout, Enugu)',
+                otpStatus: 'Verification Failed / Unreachable',
+                payment: 'Cash / Transfer on Delivery',
+                rider: 'Obinna Eze',
+                vehicle: 'Enugu City Bike #09',
+                phone: '+2348077788999',
+                currentStageIndex: 6,
+                timeline: [
+                    { time: 'Oct 12, 2026 - 03:20 PM', title: 'Delivery Attempted - Customer Unreachable', location: 'Independence Layout, Enugu', status: 'exception' },
+                    { time: 'Oct 12, 2026 - 10:15 AM', title: 'Out for Delivery with Courier', location: 'Enugu Hub', status: 'completed' },
+                    { time: 'Oct 11, 2026 - 06:00 PM', title: 'Arrived at Regional Hub', location: 'Enugu Main Sorting Facility', status: 'completed' }
+                ]
+            }
+        };
+
+        const stageList = [
+            'Order Placed',
+            'Pickup Confirmed',
+            'In Transit Hub',
+            'Sorting Completed',
+            'In Transit',
+            'Arrived Depot',
+            'Out for Delivery',
+            'Delivered'
+        ];
+
+        /* On Page Load - Check URL Search Parameters */
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const queryTracking = urlParams.get('tracking');
+            if (queryTracking) {
+                document.getElementById('trackingInput').value = queryTracking.toUpperCase();
+                performLookup(queryTracking.toUpperCase());
+            }
+        });
+
+        function handleTrackingSearch(event) {
+            event.preventDefault();
+            const inputVal = document.getElementById('trackingInput').value.trim().toUpperCase();
+            if (inputVal) {
+                // Update URL parameter without reload
+                const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?tracking=' + inputVal;
+                window.history.pushState({ path: newUrl }, '', newUrl);
+                performLookup(inputVal);
+            }
+        }
+
+        function setSampleTracking(code) {
+            document.getElementById('trackingInput').value = code;
+            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?tracking=' + code;
+            window.history.pushState({ path: newUrl }, '', newUrl);
+            performLookup(code);
+        }
+
+        function performLookup(code) {
+            const loadingState = document.getElementById('loadingState');
+            const errorState = document.getElementById('errorState');
+            const trackingResults = document.getElementById('trackingResults');
+
+            // Show Loading State
+            loadingState.classList.remove('hidden');
+            errorState.classList.add('hidden');
+            trackingResults.classList.add('hidden');
+
+            setTimeout(() => {
+                loadingState.classList.add('hidden');
+                const data = trackingDatabase[code];
+
+                if (data) {
+                    renderDashboard(data);
+                    trackingResults.classList.remove('hidden');
+                    trackingResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    document.getElementById('errorMessage').textContent = `No shipment record found for "${code}". Please verify the tracking ID or try one of the demo codes above.`;
+                    errorState.classList.remove('hidden');
+                    errorState.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 600);
+        }
+
+        function renderDashboard(data) {
+            // Package Header
+            document.getElementById('resTrackingId').textContent = data.id;
+            
+            const badge = document.getElementById('resStatusBadge');
+            badge.textContent = data.status;
+            badge.className = `px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${data.badgeStyle}`;
+
+            document.getElementById('resServiceType').innerHTML = `<i class="fa-solid fa-box text-orange-500 mr-1.5"></i> ${data.service}`;
+            document.getElementById('resEta').textContent = data.eta;
+            document.getElementById('resRoute').textContent = data.route;
+
+            // Details Grid
+            document.getElementById('resPkgCategory').textContent = data.category;
+            document.getElementById('resWeight').textContent = data.weight;
+            document.getElementById('resSender').textContent = data.sender;
+            document.getElementById('resRecipient').textContent = data.recipient;
+            document.getElementById('resOtpStatus').textContent = data.otpStatus;
+            document.getElementById('resPayment').textContent = data.payment;
+
+            // Courier Info
+            document.getElementById('resRiderName').textContent = data.rider;
+            document.getElementById('resRiderVehicle').textContent = data.vehicle;
+            document.getElementById('resRiderPhone').href = `tel:${data.phone}`;
+
+            // Render Stepper
+            renderStepper(data.currentStageIndex);
+
+            // Render Timeline
+            renderTimeline(data.timeline);
+        }
+
+        function renderStepper(activeIndex) {
+            const container = document.getElementById('stepperContainer');
+            container.innerHTML = '';
+
+            stageList.forEach((stage, idx) => {
+                const isCompleted = idx <= activeIndex;
+                const isCurrent = idx === activeIndex;
+
+                const stepDiv = document.createElement('div');
+                stepDiv.className = 'flex flex-col items-center relative z-10 text-center px-1 flex-1';
+
+                let circleClass = 'bg-slate-200 text-slate-500 border-2 border-slate-300';
+                if (isCompleted) {
+                    circleClass = 'bg-orange-500 text-white border-2 border-orange-500 shadow-md shadow-orange-500/30';
+                }
+                if (isCurrent) {
+                    circleClass = 'bg-navy-800 text-orange-400 border-2 border-orange-500 ring-4 ring-orange-500/20 font-bold';
+                }
+
+                stepDiv.innerHTML = `
+                    <div class="w-9 h-9 rounded-full ${circleClass} flex items-center justify-center text-xs font-bold transition">
+                        ${isCompleted && !isCurrent ? '<i class="fa-solid fa-check text-xs"></i>' : (idx + 1)}
+                    </div>
+                    <span class="text-[10px] font-semibold mt-2 ${isCompleted ? 'text-navy-900 font-bold' : 'text-slate-400'} leading-tight">
+                        ${stage}
+                    </span>
+                `;
+
+                container.appendChild(stepDiv);
+            });
+        }
+
+        function renderTimeline(timeline) {
+            const container = document.getElementById('timelineContainer');
+            container.innerHTML = '';
+
+            timeline.forEach((item, idx) => {
+                const div = document.createElement('div');
+                div.className = 'relative group';
+
+                let iconClass = 'bg-orange-500 text-white';
+                if (item.status === 'exception') {
+                    iconClass = 'bg-rose-500 text-white';
+                }
+
+                div.innerHTML = `
+                    <div class="absolute -left-[31px] top-0 w-6 h-6 rounded-full ${iconClass} flex items-center justify-center text-[10px] shadow-sm">
+                        <i class="${item.status === 'exception' ? 'fa-solid fa-exclamation' : 'fa-solid fa-circle-dot'}"></i>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80 hover:border-orange-200 transition">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
+                            <h4 class="font-bold text-navy-800 text-xs sm:text-sm font-heading">${item.title}</h4>
+                            <span class="text-[10px] font-mono font-semibold text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">${item.time}</span>
+                        </div>
+                        <p class="text-xs text-slate-500 flex items-center gap-1.5 mt-1">
+                            <i class="fa-solid fa-location-dot text-orange-500 text-xs"></i> ${item.location}
+                        </p>
+                    </div>
+                `;
+
+                container.appendChild(div);
+            });
+        }
+
+        function copyTrackingLink() {
+            const url = window.location.href;
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = url;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+            alert('Tracking link copied to clipboard!');
+        }
+
+        function toggleFaq(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backToTopBtn');
+            if (window.scrollY > 300) {
+                btn.classList.remove('hidden');
+            } else {
+                btn.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

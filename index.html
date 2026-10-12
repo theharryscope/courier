@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftHaul Logistics - Courier & Delivery Services in Nigeria</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#F0F4F8',
+                            100: '#D9E2EC',
+                            700: '#243B53',
+                            800: '#102A43',
+                            900: '#091A2C',
+                        },
+                        orange: {
+                            500: '#FF8A00',
+                            600: '#E07800',
+                            700: '#B85E00',
+                        },
+                        slateBg: '#F5F7FA',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F5F7FA; color: #243B53; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(16, 42, 67, 0.94) 0%, rgba(9, 26, 44, 0.96) 100%), 
+                        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #F5F7FA; }
+        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-orange-500 selection:text-white relative">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-navy-900 text-slate-300 text-xs md:text-sm py-2 px-4 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-bolt text-orange-500"></i> Nigeria's Premier Express Courier & Freight Network</span>
+                <span class="hidden md:inline text-navy-700">|</span>
+                <span class="hidden md:inline-flex items-center gap-1.5"><i class="fa-solid fa-clock text-orange-500"></i> Hours: 24/7 Operations</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="tel:+234700794384281" class="hover:text-orange-500 transition"><i class="fa-solid fa-phone text-orange-500 mr-1"></i> +234 (0) 700 SWIFTHAUL</a>
+                <span class="text-navy-700">|</span>
+                <a href="mailto:support@swifthaul.ng" class="hover:text-orange-500 transition"><i class="fa-regular fa-envelope mr-1"></i> support@swifthaul.ng</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-50 bg-navy-800 text-white shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 bg-orange-500 rounded-xl flex items-center justify-center text-navy-900 text-2xl font-black shadow-lg transform group-hover:scale-105 transition">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold tracking-tight text-white font-heading">Swift<span class="text-orange-500">Haul</span></span>
+                        <span class="block text-[10px] text-slate-400 tracking-widest uppercase font-semibold">Logistics Nigeria</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Multi-Page Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-xs xl:text-sm font-medium">
+                    <a href="index.html" class="px-3 py-2 rounded-lg text-orange-400 font-bold bg-navy-700/80 transition">Home</a>
+                    <a href="about.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">About Us</a>
+                    <a href="services.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Services</a>
+                    <a href="tracking.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Track Shipment</a>
+                    <a href="request-delivery.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Request a Delivery</a>
+                    <a href="contact.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Contact</a>
+                </nav>
+
+                <!-- Navigation CTAs -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="quote.html" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-orange-500/20 transform hover:-translate-y-0.5 transition flex items-center text-sm">
+                        <i class="fa-solid fa-calculator mr-2"></i> Get Instant Quote
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden text-slate-200 hover:text-white p-2 rounded-lg hover:bg-navy-700 focus:outline-none">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-navy-900 border-t border-navy-700 px-4 pt-3 pb-6 space-y-2">
+            <a href="index.html" class="w-full text-left px-3 py-2.5 rounded-lg bg-orange-500/10 text-orange-400 font-bold flex items-center justify-between"><span>Home</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="about.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>About Us</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="services.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Services</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="tracking.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Track Shipment</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="request-delivery.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Request a Delivery</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="quote.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Get Quote</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="contact.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Contact Us</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="faq.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>FAQs</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+        <!-- Hero Section -->
+        <section class="hero-bg text-white py-16 md:py-24 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <!-- Hero Text -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center space-x-2 bg-orange-500/20 text-orange-400 border border-orange-500/30 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide">
+                            <i class="fa-solid fa-shield-halved"></i> <span>100% Insured & Secure Logistics Nationwide</span>
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight font-heading">
+                            Delivering More Than Parcels. <span class="text-orange-500">Delivering Peace of Mind.</span>
+                        </h1>
+                        <p class="text-slate-300 text-lg md:text-xl max-w-2xl leading-relaxed">
+                            Nigeria's standard for express courier dispatch, same-day urban deliveries, interstate heavy cargo freight, and global air shipping. Fast, transparent, and always on time.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <a href="request-delivery.html" class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-orange-500/30 transform hover:-translate-y-0.5 transition flex items-center text-base">
+                                <i class="fa-solid fa-box-archive mr-2"></i> Book a Delivery
+                            </a>
+                            <a href="tracking.html" class="bg-navy-800 hover:bg-navy-700 text-white border border-slate-600 font-semibold px-7 py-4 rounded-xl transition flex items-center text-base">
+                                <i class="fa-solid fa-magnifying-glass mr-2"></i> Track Your Shipment
+                            </a>
+                        </div>
+
+                        <!-- Trust Badges -->
+                        <div class="pt-8 border-t border-slate-700/60 grid grid-cols-3 gap-4">
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-truck-ramp-box text-orange-500 text-2xl"></i>
+                                <div>
+                                    <div class="font-bold text-white text-sm">36 States</div>
+                                    <div class="text-xs text-slate-400">Coverage Hubs</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-clock-rotate-left text-orange-500 text-2xl"></i>
+                                <div>
+                                    <div class="font-bold text-white text-sm">Same-Day</div>
+                                    <div class="text-xs text-slate-400">Intra-City Dispatch</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fa-solid fa-clipboard-check text-orange-500 text-2xl"></i>
+                                <div>
+                                    <div class="font-bold text-white text-sm">99.8%</div>
+                                    <div class="text-xs text-slate-400">On-Time SLA</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero Quick Tracking Form Box -->
+                    <div class="lg:col-span-5">
+                        <div class="glass-card rounded-2xl p-6 md:p-8 shadow-2xl text-navy-900 border border-white/20 relative">
+                            <div class="bg-orange-500 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full w-max mb-3">
+                                Live Tracking Search
+                            </div>
+                            <h3 class="text-2xl font-bold font-heading mb-2">Track Your Package</h3>
+                            <p class="text-slate-600 text-sm mb-6">Enter your SwiftHaul waybill or tracking ID to view real-time location status.</p>
+                            
+                            <form action="tracking.html" method="GET" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Waybill / Tracking Number</label>
+                                    <div class="relative">
+                                        <input type="text" name="tracking" placeholder="e.g. SHL202610001" required class="w-full px-4 py-3.5 pl-11 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-orange-500 text-slate-800 font-mono text-base uppercase font-bold tracking-wider">
+                                        <i class="fa-solid fa-barcode absolute left-4 top-4 text-slate-400 text-lg"></i>
+                                    </div>
+                                </div>
+                                <button type="submit" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg transition flex items-center justify-center text-base">
+                                    <i class="fa-solid fa-magnifying-glass mr-2"></i> Track Shipment Now
+                                </button>
+                            </form>
+
+                            <div class="mt-4 pt-4 border-t border-slate-200">
+                                <span class="text-xs text-slate-500 font-medium">Demo Waybills:</span>
+                                <div class="flex flex-wrap gap-1.5 mt-2">
+                                    <a href="tracking.html?tracking=SHL202610001" class="text-xs bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 font-mono px-2.5 py-1 rounded-md border border-slate-200 transition">SHL202610001</a>
+                                    <a href="tracking.html?tracking=SHL202610003" class="text-xs bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 font-mono px-2.5 py-1 rounded-md border border-slate-200 transition">SHL202610003</a>
+                                    <a href="tracking.html?tracking=SHL202610004" class="text-xs bg-slate-100 hover:bg-orange-100 hover:text-orange-700 text-slate-700 font-mono px-2.5 py-1 rounded-md border border-slate-200 transition">SHL202610004</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animated Statistics Counter -->
+        <section class="py-12 bg-navy-900 text-white border-y border-navy-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center" id="statsSection">
+                    <div>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-orange-500 font-heading" id="statParcels">0</div>
+                        <div class="text-xs sm:text-sm text-slate-400 mt-1 uppercase tracking-wider font-semibold">Deliveries Completed</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-white font-heading" id="statStates">0</div>
+                        <div class="text-xs sm:text-sm text-slate-400 mt-1 uppercase tracking-wider font-semibold">Nigerian Hub States</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-orange-500 font-heading" id="statRiders">0</div>
+                        <div class="text-xs sm:text-sm text-slate-400 mt-1 uppercase tracking-wider font-semibold">Riders & Vans Fleet</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-white font-heading" id="statSLA">0%</div>
+                        <div class="text-xs sm:text-sm text-slate-400 mt-1 uppercase tracking-wider font-semibold">On-Time Arrival Rate</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Cards Section -->
+        <section class="py-20 bg-slateBg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-orange-500 font-bold uppercase text-xs tracking-widest">Tailored Shipping Solutions</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-800 font-heading mt-2">Comprehensive Courier & Freight Services</h2>
+                    <p class="text-slate-600 mt-4 text-base">From rapid urban motorcycle dispatch to heavy haulage and global air freight, we cover every link in your supply chain.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Service 1 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-slate-100 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-orange-100 text-orange-500 rounded-xl flex items-center justify-center text-xl mb-5 group-hover:bg-orange-500 group-hover:text-white transition">
+                                <i class="fa-solid fa-motorcycle"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy-800 font-heading mb-2">Express Intra-City</h3>
+                            <p class="text-slate-600 text-xs mb-4 leading-relaxed">Rapid urban pickup and doorstep delivery within 1-4 hours in Lagos, Abuja, and Port Harcourt.</p>
+                        </div>
+                        <a href="services.html" class="text-orange-500 hover:text-orange-600 font-semibold text-xs flex items-center gap-1">Learn More <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-slate-100 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-navy-100 text-navy-800 rounded-xl flex items-center justify-center text-xl mb-5 group-hover:bg-navy-800 group-hover:text-white transition">
+                                <i class="fa-solid fa-truck-fast"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy-800 font-heading mb-2">Inter-State Freight</h3>
+                            <p class="text-slate-600 text-xs mb-4 leading-relaxed">Scheduled interstate heavy haulage connecting commercial business corridors across all 36 states.</p>
+                        </div>
+                        <a href="services.html" class="text-orange-500 hover:text-orange-600 font-semibold text-xs flex items-center gap-1">Learn More <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-slate-100 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-orange-100 text-orange-500 rounded-xl flex items-center justify-center text-xl mb-5 group-hover:bg-orange-500 group-hover:text-white transition">
+                                <i class="fa-solid fa-plane-departure"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy-800 font-heading mb-2">International Express</h3>
+                            <p class="text-slate-600 text-xs mb-4 leading-relaxed">Door-to-door air cargo export to UK, USA, Canada, China, Europe, and over 220 global destinations.</p>
+                        </div>
+                        <a href="services.html" class="text-orange-500 hover:text-orange-600 font-semibold text-xs flex items-center gap-1">Learn More <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-slate-100 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-navy-100 text-navy-800 rounded-xl flex items-center justify-center text-xl mb-5 group-hover:bg-navy-800 group-hover:text-white transition">
+                                <i class="fa-solid fa-store"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy-800 font-heading mb-2">E-Commerce Fulfilment</h3>
+                            <p class="text-slate-600 text-xs mb-4 leading-relaxed">Cash-on-Delivery (COD), API integration, automated SMS updates, and inventory storage for online merchants.</p>
+                        </div>
+                        <a href="services.html" class="text-orange-500 hover:text-orange-600 font-semibold text-xs flex items-center gap-1">Learn More <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-slate-100 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-navy-100 text-navy-800 rounded-xl flex items-center justify-center text-xl mb-5 group-hover:bg-navy-800 group-hover:text-white transition">
+                                <i class="fa-solid fa-building"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy-800 font-heading mb-2">Corporate Mailroom</h3>
+                            <p class="text-slate-600 text-xs mb-4 leading-relaxed">Dedicated legal, banking, and official document dispatch with scheduled daily pickups and proof of receipt.</p>
+                        </div>
+                        <a href="services.html" class="text-orange-500 hover:text-orange-600 font-semibold text-xs flex items-center gap-1">Learn More <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-slate-100 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-orange-100 text-orange-500 rounded-xl flex items-center justify-center text-xl mb-5 group-hover:bg-orange-500 group-hover:text-white transition">
+                                <i class="fa-solid fa-warehouse"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy-800 font-heading mb-2">Warehousing & Hubs</h3>
+                            <p class="text-slate-600 text-xs mb-4 leading-relaxed">Secure micro-fulfillment centers in Lagos, Abuja, and Port Harcourt with live stock tracking systems.</p>
+                        </div>
+                        <a href="services.html" class="text-orange-500 hover:text-orange-600 font-semibold text-xs flex items-center gap-1">Learn More <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                    </div>
+
+                    <!-- Service 7 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-slate-100 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-navy-100 text-navy-800 rounded-xl flex items-center justify-center text-xl mb-5 group-hover:bg-navy-800 group-hover:text-white transition">
+                                <i class="fa-solid fa-route"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy-800 font-heading mb-2">Last-Mile Delivery</h3>
+                            <p class="text-slate-600 text-xs mb-4 leading-relaxed">Precision neighborhood delivery reaching remote residential areas, gated estates, and industrial parks.</p>
+                        </div>
+                        <a href="services.html" class="text-orange-500 hover:text-orange-600 font-semibold text-xs flex items-center gap-1">Learn More <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                    </div>
+
+                    <!-- Service 8 -->
+                    <div class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition border border-slate-100 group flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-orange-100 text-orange-500 rounded-xl flex items-center justify-center text-xl mb-5 group-hover:bg-orange-500 group-hover:text-white transition">
+                                <i class="fa-solid fa-temperature-arrow-down"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-navy-800 font-heading mb-2">Cold-Chain Cargo</h3>
+                            <p class="text-slate-600 text-xs mb-4 leading-relaxed">Temperature-controlled vans for pharmaceuticals, perishables, and medical supplies across cities.</p>
+                        </div>
+                        <a href="services.html" class="text-orange-500 hover:text-orange-600 font-semibold text-xs flex items-center gap-1">Learn More <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-6 space-y-6">
+                        <span class="text-orange-500 font-bold uppercase text-xs tracking-widest">The SwiftHaul Advantage</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-800 font-heading">Why Thousands of Businesses Trust SwiftHaul</h2>
+                        <p class="text-slate-600 leading-relaxed text-base">
+                            We combine cutting-edge logistics technology with a deeply rooted local transport infrastructure to deliver unmatched service across West Africa.
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-500 flex items-center justify-center text-lg flex-shrink-0 mt-1">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-navy-800 text-base">Real-Time Live Tracking</h4>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">Monitor your package's precise milestone journey from pickup to receiver signing via our live tracking portal.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-navy-100 text-navy-800 flex items-center justify-center text-lg flex-shrink-0 mt-1">
+                                    <i class="fa-solid fa-shield-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-navy-800 text-base">100% Secure & Insured Parcels</h4>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">All goods in transit are backed by comprehensive cargo insurance for total peace of mind.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-500 flex items-center justify-center text-lg flex-shrink-0 mt-1">
+                                    <i class="fa-solid fa-headset"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-navy-800 text-base">24/7 Dedicated Support</h4>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">Reach our support desk anytime via phone, WhatsApp dispatch bot, or online message desk.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4">
+                                <div class="w-10 h-10 rounded-xl bg-navy-100 text-navy-800 flex items-center justify-center text-lg flex-shrink-0 mt-1">
+                                    <i class="fa-solid fa-tags"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-navy-800 text-base">Transparent & Honest Pricing</h4>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">No hidden surcharges. Calculate instant transparent estimates using our online quote calculator.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Visual Card -->
+                    <div class="lg:col-span-6 bg-navy-900 rounded-3xl p-8 md:p-10 text-white relative shadow-2xl border border-navy-800 space-y-6">
+                        <div class="bg-orange-500/20 text-orange-400 border border-orange-500/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider w-max">
+                            Merchant API & Partner Desk
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold font-heading">Powering E-Commerce Brands Across Nigeria</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Integrate our automated shipping API directly into your online store for instant order creation, automated rider assignment, and 24-hour Cash-on-Delivery (COD) remitting.
+                        </p>
+                        
+                        <div class="p-4 bg-navy-800 rounded-2xl border border-slate-700/60 space-y-2">
+                            <div class="flex justify-between text-xs font-bold">
+                                <span>COD Remittance Cycle</span>
+                                <span class="text-emerald-400">Within 24 Hours</span>
+                            </div>
+                            <div class="w-full bg-slate-700 h-2 rounded-full overflow-hidden">
+                                <div class="bg-emerald-400 h-full w-full"></div>
+                            </div>
+                            <p class="text-[11px] text-slate-400">Direct electronic transfer into your Nigerian commercial bank account.</p>
+                        </div>
+
+                        <div class="pt-2 flex flex-wrap gap-3">
+                            <a href="request-delivery.html" class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-xl text-sm transition">
+                                Start Merchant Booking
+                            </a>
+                            <a href="quote.html" class="bg-navy-800 hover:bg-navy-700 text-white border border-slate-600 font-semibold px-6 py-3 rounded-xl text-sm transition">
+                                Calculate Rates
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="py-20 bg-navy-900 text-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-orange-500 font-bold uppercase text-xs tracking-widest">Seamless 4-Step Process</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold font-heading mt-2">How SwiftHaul Operates</h2>
+                    <p class="text-slate-300 mt-4 text-base">Booking and receiving your package is effortless with our streamlined process.</p>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-8 relative">
+                    <div class="text-center space-y-4">
+                        <div class="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mx-auto shadow-lg shadow-orange-500/30">1</div>
+                        <h3 class="text-lg font-bold font-heading">Book Shipment</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Enter pickup address, recipient details, and package dimensions online.</p>
+                    </div>
+                    <div class="text-center space-y-4">
+                        <div class="w-16 h-16 bg-navy-700 border border-slate-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mx-auto">2</div>
+                        <h3 class="text-lg font-bold font-heading">Package Pickup</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">A verified dispatch agent arrives at your doorstep for immediate parcel collection.</p>
+                    </div>
+                    <div class="text-center space-y-4">
+                        <div class="w-16 h-16 bg-navy-700 border border-slate-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mx-auto">3</div>
+                        <h3 class="text-lg font-bold font-heading">Live GPS Tracking</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Track transit milestones in real-time with your unique waybill tracking ID.</p>
+                    </div>
+                    <div class="text-center space-y-4">
+                        <div class="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mx-auto shadow-lg shadow-orange-500/30">4</div>
+                        <h3 class="text-lg font-bold font-heading">Safe Delivery</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">Recipient verifies delivery via secure OTP pin with digital proof of receipt.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nigerian Hub Coverage Highlights -->
+        <section class="py-20 bg-slateBg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-orange-500 font-bold uppercase text-xs tracking-widest">Nationwide Network</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-800 font-heading mt-2">Primary Nigerian Hub Locations</h2>
+                    <p class="text-slate-600 mt-4 text-base">Direct sorting centers and express distribution terminals across major economic centers.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-orange-100 text-orange-500 rounded-xl flex items-center justify-center text-xl mx-auto mb-3">
+                            <i class="fa-solid fa-city"></i>
+                        </div>
+                        <h4 class="font-bold text-navy-800 text-base">Lagos State</h4>
+                        <p class="text-xs text-slate-500 mt-1">Ikeja, VI, Lekki & Yaba Hubs</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-navy-100 text-navy-800 rounded-xl flex items-center justify-center text-xl mx-auto mb-3">
+                            <i class="fa-solid fa-building-flag"></i>
+                        </div>
+                        <h4 class="font-bold text-navy-800 text-base">Abuja FCT</h4>
+                        <p class="text-xs text-slate-500 mt-1">Garki & Central Business Hub</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-orange-100 text-orange-500 rounded-xl flex items-center justify-center text-xl mx-auto mb-3">
+                            <i class="fa-solid fa-water-ladder"></i>
+                        </div>
+                        <h4 class="font-bold text-navy-800 text-base">Port Harcourt</h4>
+                        <p class="text-xs text-slate-500 mt-1">Aba Road Freight Hub</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-navy-100 text-navy-800 rounded-xl flex items-center justify-center text-xl mx-auto mb-3">
+                            <i class="fa-solid fa-warehouse"></i>
+                        </div>
+                        <h4 class="font-bold text-navy-800 text-base">Kano State</h4>
+                        <p class="text-xs text-slate-500 mt-1">Commercial Grain & Cargo Zone</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition col-span-2 md:col-span-1">
+                        <div class="w-12 h-12 bg-orange-100 text-orange-500 rounded-xl flex items-center justify-center text-xl mx-auto mb-3">
+                            <i class="fa-solid fa-truck-ramp-box"></i>
+                        </div>
+                        <h4 class="font-bold text-navy-800 text-base">Onitsha Hub</h4>
+                        <p class="text-xs text-slate-500 mt-1">Main Market Commercial Express</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-orange-500 font-bold uppercase text-xs tracking-widest">Client Reviews</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-800 font-heading mt-2">What Our Customers Say</h2>
+                    <p class="text-slate-600 mt-4 text-base">Trusted by merchants, corporate firms, and individual senders across Nigeria.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-slateBg p-6 rounded-2xl border border-slate-200 flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="text-amber-400 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-xs leading-relaxed italic">
+                                "SwiftHaul has completely solved our Lagos-to-Abuja same-day delivery bottlenecks. Waybill tracking is exact and our customers love the OTP verification."
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-4 border-t border-slate-200">
+                            <div class="w-10 h-10 rounded-full bg-navy-800 text-white font-bold flex items-center justify-center text-xs">FO</div>
+                            <div>
+                                <h5 class="font-bold text-navy-800 text-xs">Funke Oladele</h5>
+                                <p class="text-[11px] text-slate-500">CEO, Glamour Boutique Lagos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="bg-slateBg p-6 rounded-2xl border border-slate-200 flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="text-amber-400 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-xs leading-relaxed italic">
+                                "Their rate calculator is transparent with zero hidden fees. Pickups in Yaba are usually within 30 minutes of placing a order."
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-4 border-t border-slate-200">
+                            <div class="w-10 h-10 rounded-full bg-orange-500 text-white font-bold flex items-center justify-center text-xs">EM</div>
+                            <div>
+                                <h5 class="font-bold text-navy-800 text-xs">Emeka Nnamdi</h5>
+                                <p class="text-[11px] text-slate-500">Operations Lead, TechParts NG</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="bg-slateBg p-6 rounded-2xl border border-slate-200 flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <div class="text-amber-400 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-xs leading-relaxed italic">
+                                "Sending air cargo parcels to the UK used to be stressful until we switched to SwiftHaul. Customs clearing was smooth and delivered in 4 days."
+                            </p>
+                        </div>
+                        <div class="flex items-center space-x-3 pt-4 border-t border-slate-200">
+                            <div class="w-10 h-10 rounded-full bg-navy-800 text-white font-bold flex items-center justify-center text-xs">AIB</div>
+                            <div>
+                                <h5 class="font-bold text-navy-800 text-xs">Aisha Ibrahim</h5>
+                                <p class="text-[11px] text-slate-500">Exporter, Northern Craft Co.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Banner -->
+        <section class="py-16 bg-navy-900 text-white relative overflow-hidden border-t border-navy-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <div class="max-w-3xl mx-auto space-y-6">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold font-heading">Ready to Send Your Next Package?</h2>
+                    <p class="text-slate-300 text-base">Book your dispatch now or calculate your exact shipping costs in seconds.</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-4 pt-4">
+                        <a href="request-delivery.html" class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-orange-500/30 transition flex items-center text-base">
+                            <i class="fa-solid fa-box-archive mr-2"></i> Book a Delivery
+                        </a>
+                        <a href="quote.html" class="bg-navy-800 hover:bg-navy-700 text-white border border-slate-600 font-semibold px-8 py-4 rounded-xl transition flex items-center text-base">
+                            <i class="fa-solid fa-calculator mr-2"></i> Calculate Shipping Rate
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Main Footer -->
+    <footer class="bg-navy-900 text-slate-300 border-t border-navy-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+                <!-- Company Info -->
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center text-navy-900 text-xl font-black">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <span class="text-2xl font-bold tracking-tight text-white font-heading">Swift<span class="text-orange-500">Haul</span></span>
+                    </a>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                        SwiftHaul Logistics is Nigeria's premier technology-driven courier platform providing same-day urban dispatch, inter-state heavy haulage, and global air cargo shipping.
+                    </p>
+                    
+                    <!-- Newsletter Signup -->
+                    <div class="pt-2">
+                        <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-2">Subscribe for Rate Discounts</h5>
+                        <form onsubmit="handleNewsletter(event)" class="flex max-w-sm">
+                            <input type="email" placeholder="Enter your email" required class="px-3.5 py-2.5 rounded-l-xl bg-navy-800 border border-slate-700 text-xs text-white focus:outline-none focus:ring-1 focus:ring-orange-500 w-full">
+                            <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold px-4 py-2.5 rounded-r-xl transition flex-shrink-0">
+                                Join
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Main Navigation Pages -->
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Main Pages</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="index.html" class="hover:text-orange-500 transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-orange-500 transition">About Company</a></li>
+                        <li><a href="services.html" class="hover:text-orange-500 transition">Our Services</a></li>
+                        <li><a href="tracking.html" class="hover:text-orange-500 transition">Track Package</a></li>
+                        <li><a href="contact.html" class="hover:text-orange-500 transition">Contact Desk</a></li>
+                    </ul>
+                </div>
+
+                <!-- Tools & Booking -->
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Tools & Booking</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="request-delivery.html" class="hover:text-orange-500 transition">Request a Delivery</a></li>
+                        <li><a href="quote.html" class="hover:text-orange-500 transition">Rate Calculator</a></li>
+                        <li><a href="faq.html" class="hover:text-orange-500 transition">Help & FAQs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal & Policies -->
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Legal Policies</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="shipping.html" class="hover:text-orange-500 transition">Shipping Policy</a></li>
+                        <li><a href="privacy.html" class="hover:text-orange-500 transition">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-orange-500 transition">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Social Media & Copyright -->
+            <div class="mt-12 pt-8 border-t border-navy-800 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <div>&copy; 2026 SwiftHaul Logistics Nigeria Ltd. All rights reserved.</div>
+                
+                <div class="flex items-center space-x-4 text-slate-400">
+                    <a href="#" class="hover:text-orange-500 transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition"><i class="fa-brands fa-instagram text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+                </div>
+
+                <div class="flex items-center space-x-2 text-[11px]">
+                    <span>Lagos</span> • <span>Abuja</span> • <span>Port Harcourt</span> • <span>Kano</span> • <span>Onitsha</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Actions: WhatsApp & Back To Top -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+        <a href="https://wa.me/2348129990000" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition" title="WhatsApp Support">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </a>
+        <button onclick="scrollToTop()" id="backToTopBtn" class="hidden w-12 h-12 bg-navy-800 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition border border-slate-600" title="Back to Top">
+            <i class="fa-solid fa-arrow-up text-base"></i>
+        </button>
+    </div>
+
+    <script>
+        /* MOBILE MENU TOGGLE */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        /* BACK TO TOP BUTTON */
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backToTopBtn');
+            if (window.scrollY > 300) {
+                btn.classList.remove('hidden');
+            } else {
+                btn.classList.add('hidden');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* NEWSLETTER HANDLER */
+        function handleNewsletter(e) {
+            e.preventDefault();
+            alert("Thank you for subscribing to SwiftHaul Logistics updates!");
+            e.target.reset();
+        }
+
+        /* ANIMATED STATS COUNTER */
+        let countersTriggered = false;
+        function animateCounters() {
+            if (countersTriggered) return;
+            countersTriggered = true;
+
+            const targets = [
+                { id: 'statParcels', end: 150000, suffix: '+' },
+                { id: 'statStates', end: 36, suffix: '' },
+                { id: 'statRiders', end: 650, suffix: '+' },
+                { id: 'statSLA', end: 99.8, suffix: '%', decimal: true }
+            ];
+
+            targets.forEach(item => {
+                const el = document.getElementById(item.id);
+                if (!el) return;
+
+                let current = 0;
+                const duration = 2000;
+                const steps = 50;
+                const increment = item.end / steps;
+                const interval = duration / steps;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= item.end) {
+                        current = item.end;
+                        clearInterval(timer);
+                    }
+                    if (item.decimal) {
+                        el.innerText = current.toFixed(1) + item.suffix;
+                    } else {
+                        el.innerText = Math.floor(current).toLocaleString('en-US') + item.suffix;
+                    }
+                }, interval);
+            });
+        }
+
+        /* INTERSECTION OBSERVER FOR STATS */
+        window.addEventListener('DOMContentLoaded', () => {
+            const statsSec = document.getElementById('statsSection');
+            if (statsSec && 'IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) animateCounters();
+                    });
+                }, { threshold: 0.3 });
+                observer.observe(statsSec);
+            } else {
+                animateCounters();
+            }
+        });
+    </script>
+</body>
+</html>

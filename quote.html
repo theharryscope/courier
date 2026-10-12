@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant Shipping Rate Calculator - SwiftHaul Logistics Nigeria</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#F0F4F8',
+                            100: '#D9E2EC',
+                            700: '#243B53',
+                            800: '#102A43',
+                            900: '#091A2C',
+                        },
+                        orange: {
+                            500: '#FF8A00',
+                            600: '#E07800',
+                            700: '#B85E00',
+                        },
+                        slateBg: '#F5F7FA',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F5F7FA; color: #243B53; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(16, 42, 67, 0.95) 0%, rgba(9, 26, 44, 0.97) 100%), 
+                        url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #F5F7FA; }
+        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #FFFFFF;
+            border: 1px solid #CBD5E1;
+            border-radius: 0.75rem;
+            font-size: 0.875rem;
+            color: #102A43;
+            transition: all 0.2s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #FF8A00;
+            box-shadow: 0 0 0 3px rgba(255, 138, 0, 0.15);
+        }
+
+        .tier-card-active {
+            border-color: #FF8A00 !important;
+            background-color: rgba(255, 138, 0, 0.04) !important;
+            box-shadow: 0 4px 12px rgba(255, 138, 0, 0.12) !important;
+        }
+
+        @media print {
+            header, footer, .hero-bg, .no-print, #faqSection, #rateMatrixSection, #disclaimerNotice { display: none !important; }
+            body { background: white; color: black; }
+            #quoteCalculatorCard { box-shadow: none !important; border: 1px solid #ddd !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-orange-500 selection:text-white relative">
+
+    <div class="bg-navy-900 text-slate-300 text-xs md:text-sm py-2 px-4 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-calculator text-orange-500"></i> Instant Tariff Computation & Route Engine</span>
+                <span class="hidden md:inline text-navy-700">|</span>
+                <span class="hidden md:inline-flex items-center gap-1.5"><i class="fa-solid fa-clock text-orange-500"></i> Operating Hours: 24/7 Nationwide Dispatch</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="tel:+234700794384281" class="hover:text-orange-500 transition"><i class="fa-solid fa-phone text-orange-500 mr-1"></i> +234 (0) 700 SWIFTHAUL</a>
+                <span class="text-navy-700">|</span>
+                <a href="mailto:support@swifthaul.ng" class="hover:text-orange-500 transition"><i class="fa-regular fa-envelope mr-1"></i> support@swifthaul.ng</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-50 bg-navy-800 text-white shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 bg-orange-500 rounded-xl flex items-center justify-center text-navy-900 text-2xl font-black shadow-lg transform group-hover:scale-105 transition">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold tracking-tight text-white font-heading">Swift<span class="text-orange-500">Haul</span></span>
+                        <span class="block text-[10px] text-slate-400 tracking-widest uppercase font-semibold">Logistics Nigeria</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-xs xl:text-sm font-medium">
+                    <a href="index.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Home</a>
+                    <a href="about.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">About Us</a>
+                    <a href="services.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Services</a>
+                    <a href="tracking.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Track Shipment</a>
+                    <a href="request-delivery.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Request Delivery</a>
+                    <a href="quote.html" class="px-3 py-2 rounded-lg text-orange-400 font-bold bg-navy-700/80 transition border-b-2 border-orange-500">Get a Quote</a>
+                    <a href="contact.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Contact</a>
+                </nav>
+
+                <!-- Navigation CTAs -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="request-delivery.html" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-orange-500/20 transform hover:-translate-y-0.5 transition flex items-center text-sm">
+                        <i class="fa-solid fa-box-open mr-2"></i> Book Pickup Now
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden text-slate-200 hover:text-white p-2 rounded-lg hover:bg-navy-700 focus:outline-none" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-navy-900 border-t border-navy-700 px-4 pt-3 pb-6 space-y-2">
+            <a href="index.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Home</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="about.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>About Us</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="services.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Services</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="tracking.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Track Shipment</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="request-delivery.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Request Delivery</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="quote.html" class="w-full text-left px-3 py-2.5 rounded-lg bg-orange-500/10 text-orange-400 font-bold flex items-center justify-between"><span>Get a Quote</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="contact.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Contact Us</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+        <section class="hero-bg text-white py-16 md:py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <nav class="flex justify-center items-center gap-2 text-xs text-slate-300 font-medium uppercase tracking-wider mb-4">
+                    <a href="index.html" class="hover:text-orange-400 transition">Home</a>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-orange-500"></i>
+                    <span class="text-orange-400">Rate Calculator</span>
+                </nav>
+
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading leading-tight">
+                    Instant Shipping <span class="text-orange-500">Rate Calculator</span>
+                </h1>
+                <p class="text-slate-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mt-3 leading-relaxed">
+                    Calculate precise freight and parcel delivery costs across Nigeria and over 220 international destinations instantly.
+                </p>
+
+                <!-- Badge Highlights -->
+                <div class="mt-8 flex flex-wrap items-center justify-center gap-3 max-w-3xl mx-auto text-xs font-semibold">
+                    <span class="bg-navy-800/80 border border-navy-700/90 text-slate-200 px-4 py-2 rounded-full flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-shield-check text-orange-500"></i> No Hidden Charges
+                    </span>
+                    <span class="bg-navy-800/80 border border-navy-700/90 text-slate-200 px-4 py-2 rounded-full flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-bolt text-orange-500"></i> Real-Time Rate Engine
+                    </span>
+                    <span class="bg-navy-800/80 border border-navy-700/90 text-slate-200 px-4 py-2 rounded-full flex items-center gap-2 shadow-sm">
+                        <i class="fa-solid fa-arrow-right-arrow-left text-orange-500"></i> Instant Waybill Conversion
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-16 bg-slateBg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid lg:grid-cols-12 gap-8 items-start" id="quoteCalculatorCard">
+
+                    <!-- Left Column: Interactive Form Inputs (7 Columns) -->
+                    <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-200 space-y-6">
+                        
+                        <div class="border-b border-slate-100 pb-4">
+                            <span class="text-xs font-bold text-orange-500 uppercase tracking-widest block">Step 1: Route & Speed Selection</span>
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-navy-900 font-heading mt-1">Configure Your Shipment Route</h2>
+                        </div>
+
+                        <!-- Route Selector: Origin & Destination -->
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">
+                                    <i class="fa-solid fa-location-dot text-orange-500 mr-1"></i> Pickup Location (Origin) *
+                                </label>
+                                <select id="quoteOrigin" class="input-field bg-white font-medium" onchange="runQuoteEngine()">
+                                    <optgroup label="Popular Nigerian Cities">
+                                        <option value="Lagos" selected>Lagos State (Hub HQ)</option>
+                                        <option value="Abuja">Abuja (FCT Central Hub)</option>
+                                        <option value="Port Harcourt">Port Harcourt (Rivers)</option>
+                                        <option value="Kano">Kano (Kano Depot)</option>
+                                        <option value="Enugu">Enugu (Enugu Gateway)</option>
+                                        <option value="Ibadan">Ibadan (Oyo)</option>
+                                        <option value="Asaba">Asaba (Delta)</option>
+                                        <option value="Onitsha">Onitsha (Anambra)</option>
+                                        <option value="Calabar">Calabar (Cross River)</option>
+                                        <option value="Kaduna">Kaduna (Kaduna)</option>
+                                    </optgroup>
+                                    <optgroup label="International Origins">
+                                        <option value="UK_Origin">London, United Kingdom (Air Imports)</option>
+                                        <option value="US_Origin">Houston / New York, USA</option>
+                                        <option value="CN_Origin">Guangzhou / Shanghai, China</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">
+                                    <i class="fa-solid fa-location-crosshairs text-orange-500 mr-1"></i> Delivery Destination *
+                                </label>
+                                <select id="quoteDest" class="input-field bg-white font-medium" onchange="runQuoteEngine()">
+                                    <optgroup label="Domestic Nigerian Cities">
+                                        <option value="Abuja" selected>Abuja (FCT Hub)</option>
+                                        <option value="Lagos">Lagos State (All Zones)</option>
+                                        <option value="Port Harcourt">Port Harcourt (Rivers)</option>
+                                        <option value="Kano">Kano State</option>
+                                        <option value="Enugu">Enugu State</option>
+                                        <option value="Ibadan">Ibadan (Oyo)</option>
+                                        <option value="Asaba">Asaba / Warri (Delta)</option>
+                                        <option value="Onitsha">Onitsha / Nnewi (Anambra)</option>
+                                        <option value="Calabar">Calabar (Cross River)</option>
+                                        <option value="Kaduna">Kaduna State</option>
+                                    </optgroup>
+                                    <optgroup label="International Freight Destinations">
+                                        <option value="United Kingdom">United Kingdom (London Heathrow)</option>
+                                        <option value="United States">United States (JFK / Houston)</option>
+                                        <option value="Canada">Canada (Toronto / Vancouver)</option>
+                                        <option value="UAE">United Arab Emirates (Dubai Cargo Hub)</option>
+                                        <option value="South Africa">South Africa (Johannesburg)</option>
+                                        <option value="China">China (Guangzhou / Shenzhen)</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Delivery Speed/Tier Selector -->
+                        <div>
+                            <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">
+                                <i class="fa-solid fa-gauge-high text-orange-500 mr-1"></i> Delivery Speed & Service Tier *
+                            </label>
+                            
+                            <div class="grid sm:grid-cols-2 gap-3" id="tierGrid">
+                                
+                                <label class="border border-slate-200 rounded-2xl p-3.5 flex items-start gap-3 cursor-pointer hover:border-orange-500 transition tier-card-active" id="label-standard">
+                                    <input type="radio" name="serviceTier" value="standard" checked onclick="selectTier('standard')" class="mt-1 text-orange-500 focus:ring-orange-500">
+                                    <div>
+                                        <span class="block text-xs font-bold text-navy-900 flex items-center gap-1.5">
+                                            <i class="fa-solid fa-truck text-navy-700"></i> Standard Economy
+                                        </span>
+                                        <span class="text-[11px] text-slate-500">2-4 Business Days • Regular Tariff</span>
+                                    </div>
+                                </label>
+
+                                <label class="border border-slate-200 rounded-2xl p-3.5 flex items-start gap-3 cursor-pointer hover:border-orange-500 transition" id="label-express">
+                                    <input type="radio" name="serviceTier" value="express" onclick="selectTier('express')" class="mt-1 text-orange-500 focus:ring-orange-500">
+                                    <div>
+                                        <span class="block text-xs font-bold text-navy-900 flex items-center gap-1.5">
+                                            <i class="fa-solid fa-plane-departure text-orange-500"></i> Express Priority
+                                        </span>
+                                        <span class="text-[11px] text-slate-500">24-48 Hours • Priority Dispatch (+50%)</span>
+                                    </div>
+                                </label>
+
+                                <label class="border border-slate-200 rounded-2xl p-3.5 flex items-start gap-3 cursor-pointer hover:border-orange-500 transition" id="label-sameDay">
+                                    <input type="radio" name="serviceTier" value="sameDay" onclick="selectTier('sameDay')" class="mt-1 text-orange-500 focus:ring-orange-500">
+                                    <div>
+                                        <span class="block text-xs font-bold text-navy-900 flex items-center gap-1.5">
+                                            <i class="fa-solid fa-bolt text-amber-500"></i> Same-Day Flash
+                                        </span>
+                                        <span class="text-[11px] text-slate-500">&lt;12 Hours • Urban / Select Corridors</span>
+                                    </div>
+                                </label>
+
+                                <label class="border border-slate-200 rounded-2xl p-3.5 flex items-start gap-3 cursor-pointer hover:border-orange-500 transition" id="label-airFreight">
+                                    <input type="radio" name="serviceTier" value="airFreight" onclick="selectTier('airFreight')" class="mt-1 text-orange-500 focus:ring-orange-500">
+                                    <div>
+                                        <span class="block text-xs font-bold text-navy-900 flex items-center gap-1.5">
+                                            <i class="fa-solid fa-earth-africa text-emerald-600"></i> Air Cargo Global
+                                        </span>
+                                        <span class="text-[11px] text-slate-500">3-5 Days • Global Air Clearance</span>
+                                    </div>
+                                </label>
+
+                            </div>
+                        </div>
+
+                        <div class="border-b border-slate-100 pb-4 pt-2">
+                            <span class="text-xs font-bold text-orange-500 uppercase tracking-widest block">Step 2: Package Weight & Dimensions</span>
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-navy-900 font-heading mt-1">Item Specifications</h2>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Shipment Category *</label>
+                                <select id="quoteCategory" class="input-field bg-white font-medium" onchange="runQuoteEngine()">
+                                    <option value="Documents">Documents / Official Papers</option>
+                                    <option value="Small Parcel" selected>Small Parcel / Gift Box</option>
+                                    <option value="E-Commerce">E-Commerce Multi-Item Stock</option>
+                                    <option value="Heavy Freight">Heavy Freight & Pallets (&gt;50kg)</option>
+                                    <option value="Fragile">Fragile & Glassware Items</option>
+                                    <option value="Perishable">Perishable / Cold Chain Products</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Actual Weight (kg) *</label>
+                                <input type="number" id="quoteWeight" min="0.5" max="2000" step="0.5" value="3.0" class="input-field font-semibold" oninput="runQuoteEngine()">
+                            </div>
+                        </div>
+
+                        <!-- Volumetric Weight Calculator Input Box -->
+                        <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 space-y-3">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="font-bold text-navy-900 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-ruler-combined text-orange-500"></i> Package Dimensions (cm)
+                                </span>
+                                <span id="volumetricDisplay" class="font-mono text-orange-600 font-bold bg-orange-50 px-2 py-0.5 rounded border border-orange-200">
+                                    Volumetric: 0.80 kg
+                                </span>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-3">
+                                <div>
+                                    <label class="block text-[10px] text-slate-500 font-semibold mb-1 uppercase">Length (cm)</label>
+                                    <input type="number" id="dimL" value="20" min="1" max="500" class="input-field text-xs text-center" oninput="runQuoteEngine()">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-500 font-semibold mb-1 uppercase">Width (cm)</label>
+                                    <input type="number" id="dimW" value="20" min="1" max="500" class="input-field text-xs text-center" oninput="runQuoteEngine()">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-slate-500 font-semibold mb-1 uppercase">Height (cm)</label>
+                                    <input type="number" id="dimH" value="10" min="1" max="500" class="input-field text-xs text-center" oninput="runQuoteEngine()">
+                                </div>
+                            </div>
+                            <p class="text-[11px] text-slate-500">
+                                <i class="fa-solid fa-circle-info text-slate-400 mr-1"></i> Billable weight is the higher value between actual weight and volumetric weight (L x W x H / 5000).
+                            </p>
+                        </div>
+
+                        <!-- Declared Value & Add-ons -->
+                        <div>
+                            <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Declared Item Value (₦) *</label>
+                            <input type="number" id="quoteValue" value="50000" min="0" step="5000" class="input-field font-semibold" oninput="runQuoteEngine()">
+                            <span class="text-[10px] text-slate-400 mt-1 block">Used for Goods-In-Transit protection and customs valuation.</span>
+                        </div>
+
+                        <div class="space-y-2.5 pt-2 border-t border-slate-100">
+                            <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Optional Security & Add-On Services</label>
+                            
+                            <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-100 transition">
+                                <span class="flex items-center gap-2">
+                                    <input type="checkbox" id="addInsurance" checked onchange="runQuoteEngine()" class="w-4 h-4 text-orange-500 rounded focus:ring-orange-500">
+                                    <span>Premium Goods Insurance (+1.5% declared value)</span>
+                                </span>
+                                <span id="addonInsuranceVal" class="font-mono text-navy-800 font-bold">₦750</span>
+                            </label>
+
+                            <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-100 transition">
+                                <span class="flex items-center gap-2">
+                                    <input type="checkbox" id="addPod" checked onchange="runQuoteEngine()" class="w-4 h-4 text-orange-500 rounded focus:ring-orange-500">
+                                    <span>Proof of Delivery (POD) Instant SMS Alert</span>
+                                </span>
+                                <span class="text-emerald-600 font-bold uppercase text-[10px]">Free</span>
+                            </label>
+
+                            <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-100 transition">
+                                <span class="flex items-center gap-2">
+                                    <input type="checkbox" id="addSecurity" onchange="runQuoteEngine()" class="w-4 h-4 text-orange-500 rounded focus:ring-orange-500">
+                                    <span>Signature Required / Tamper-Proof Vault Lock (+₦1,500)</span>
+                                </span>
+                                <span class="font-mono text-navy-800 font-bold">₦1,500</span>
+                            </label>
+
+                            <label class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-100 transition">
+                                <span class="flex items-center gap-2">
+                                    <input type="checkbox" id="addFragile" onchange="runQuoteEngine()" class="w-4 h-4 text-orange-500 rounded focus:ring-orange-500">
+                                    <span>Fragile Handling & Heavy Bubble Wrap (+₦1,000)</span>
+                                </span>
+                                <span class="font-mono text-navy-800 font-bold">₦1,000</span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Column: Live Rate Breakdown & Results (5 Columns) -->
+                    <div class="lg:col-span-5 sticky top-28 space-y-6">
+
+                        <div class="bg-navy-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-navy-800 space-y-6">
+                            
+                            <div class="flex items-center justify-between border-b border-navy-800 pb-4">
+                                <span class="text-xs font-bold text-orange-400 font-heading uppercase tracking-wider flex items-center gap-2">
+                                    <i class="fa-solid fa-receipt text-orange-500"></i> Calculated Breakdown
+                                </span>
+                                <span class="bg-orange-500/20 text-orange-400 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">Live Tariff</span>
+                            </div>
+
+                            <!-- Route Visual Banner -->
+                            <div class="bg-navy-800 p-4 rounded-2xl border border-navy-700/80 text-xs flex items-center justify-between">
+                                <div class="text-left">
+                                    <span class="text-[10px] text-slate-400 uppercase font-semibold block">Origin Station</span>
+                                    <span id="resOrigin" class="font-bold text-white text-sm">Lagos</span>
+                                </div>
+                                <div class="text-center">
+                                    <i class="fa-solid fa-truck-arrow-right text-orange-500 text-lg"></i>
+                                    <span id="resBillableWeight" class="block text-[10px] text-orange-400 font-mono font-bold mt-0.5">3.0 kg Billable</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[10px] text-slate-400 uppercase font-semibold block">Destination</span>
+                                    <span id="resDest" class="font-bold text-white text-sm">Abuja</span>
+                                </div>
+                            </div>
+
+                            <!-- Detailed Itemized Pricing List -->
+                            <div class="space-y-3 text-xs border-b border-navy-800 pb-5">
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Base Freight Tariff:</span>
+                                    <span id="resBaseFare" class="font-mono font-semibold text-white">₦2,500</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Fuel & Inter-State Surcharge:</span>
+                                    <span id="resFuelSurcharge" class="font-mono font-semibold text-white">₦1,200</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Speed / Priority Premium:</span>
+                                    <span id="resSpeedPremium" class="font-mono font-semibold text-white">₦0</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Insurance & Value Protection:</span>
+                                    <span id="resInsuranceFee" class="font-mono font-semibold text-white">₦750</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Selected Add-On Services:</span>
+                                    <span id="resAddonsFee" class="font-mono font-semibold text-white">₦0</span>
+                                </div>
+                            </div>
+
+                            <!-- Total Price & SLA Window -->
+                            <div class="space-y-2">
+                                <div class="flex items-baseline justify-between">
+                                    <div>
+                                        <span class="text-[11px] text-slate-400 uppercase font-bold tracking-widest block">Total Estimated Cost</span>
+                                        <span class="text-[10px] text-emerald-400 font-medium">All Tariffs & Surcharges Included</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span id="resTotal" class="text-3xl font-black text-orange-400 font-mono">₦4,450</span>
+                                    </div>
+                                </div>
+
+                                <div class="bg-navy-800/90 p-3 rounded-xl border border-navy-700/80 flex items-center justify-between text-xs">
+                                    <span class="text-slate-300"><i class="fa-regular fa-clock text-orange-500 mr-1.5"></i> Est. SLA Window:</span>
+                                    <span id="resSlaWindow" class="font-bold text-white">2 - 3 Business Days</span>
+                                </div>
+                            </div>
+
+                            <!-- Primary Action Buttons -->
+                            <div class="space-y-3 pt-2">
+                                <button type="button" onclick="bookWithQuote()" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-xl transition shadow-xl text-sm flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-box-check"></i> Book Shipment with this Quote
+                                </button>
+                                
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button type="button" onclick="window.print()" class="bg-navy-800 hover:bg-navy-700 text-slate-200 border border-navy-700 font-bold py-2.5 rounded-xl transition text-xs flex items-center justify-center gap-1.5">
+                                        <i class="fa-solid fa-print text-orange-400"></i> Print / PDF
+                                    </button>
+                                    <button type="button" onclick="resetQuoteEngine()" class="bg-navy-800 hover:bg-navy-700 text-slate-200 border border-navy-700 font-bold py-2.5 rounded-xl transition text-xs flex items-center justify-center gap-1.5">
+                                        <i class="fa-solid fa-rotate-right text-orange-400"></i> Recalculate
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Direct Assistance Card -->
+                        <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm text-xs space-y-3">
+                            <h4 class="font-bold text-navy-900 font-heading flex items-center gap-2">
+                                <i class="fa-solid fa-truck-ramp-box text-orange-500"></i> Need Custom Heavy Haulage?
+                            </h4>
+                            <p class="text-slate-500 leading-relaxed">
+                                Shipping over 1,000kg or requiring specialized flatbed trucks? Talk to our corporate haulage team.
+                            </p>
+                            <a href="tel:+2348123456789" class="w-full bg-slate-100 hover:bg-slate-200 text-navy-900 font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-2 text-xs">
+                                <i class="fa-solid fa-phone text-orange-500"></i> Call B2B Haulage Desk
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="py-16 bg-white border-t border-slate-200" id="rateMatrixSection">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center mb-12">
+                    <span class="text-orange-500 font-bold uppercase text-xs tracking-widest">Standard Tariff Benchmarks</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-800 font-heading mt-1">Sample Regional Rate Matrix</h2>
+                    <p class="text-slate-500 text-xs sm:text-sm mt-2">Baseline rates for standard packages up to 2kg across key commercial corridors.</p>
+                </div>
+
+                <div class="overflow-x-auto rounded-3xl border border-slate-200 shadow-sm">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-navy-900 text-white font-heading">
+                                <th class="p-4 sm:p-5">Route Corridor</th>
+                                <th class="p-4 sm:p-5">Standard Economy (1-2kg)</th>
+                                <th class="p-4 sm:p-5">Express Priority (1-2kg)</th>
+                                <th class="p-4 sm:p-5">Est. Delivery SLA</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 bg-white text-navy-800">
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 font-bold flex items-center gap-2">
+                                    <i class="fa-solid fa-city text-orange-500"></i> Intra-Lagos Urban Dispatch
+                                </td>
+                                <td class="p-4 font-mono">₦2,000 – ₦3,000</td>
+                                <td class="p-4 font-mono font-bold text-orange-600">₦3,500 – ₦4,500</td>
+                                <td class="p-4"><span class="bg-emerald-100 text-emerald-800 font-bold text-[11px] px-2.5 py-1 rounded-md">Same Day / 24 Hours</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 font-bold">Lagos Corridor ➔ Abuja FCT</td>
+                                <td class="p-4 font-mono">₦3,500 – ₦4,500</td>
+                                <td class="p-4 font-mono font-bold text-orange-600">₦5,500 – ₦7,000</td>
+                                <td class="p-4"><span class="bg-blue-100 text-blue-800 font-bold text-[11px] px-2.5 py-1 rounded-md">24 – 48 Hours</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 font-bold">Lagos Corridor ➔ Port Harcourt</td>
+                                <td class="p-4 font-mono">₦3,800 – ₦4,800</td>
+                                <td class="p-4 font-mono font-bold text-orange-600">₦6,000 – ₦7,500</td>
+                                <td class="p-4"><span class="bg-blue-100 text-blue-800 font-bold text-[11px] px-2.5 py-1 rounded-md">24 – 48 Hours</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 font-bold">Lagos / Abuja Corridor ➔ Kano / Kaduna</td>
+                                <td class="p-4 font-mono">₦4,200 – ₦5,200</td>
+                                <td class="p-4 font-mono font-bold text-orange-600">₦6,500 – ₦8,000</td>
+                                <td class="p-4"><span class="bg-amber-100 text-amber-800 font-bold text-[11px] px-2.5 py-1 rounded-md">2 – 3 Days</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 font-bold">Lagos Corridor ➔ Enugu / Onitsha</td>
+                                <td class="p-4 font-mono">₦3,600 – ₦4,600</td>
+                                <td class="p-4 font-mono font-bold text-orange-600">₦5,800 – ₦7,200</td>
+                                <td class="p-4"><span class="bg-blue-100 text-blue-800 font-bold text-[11px] px-2.5 py-1 rounded-md">24 – 48 Hours</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-4 font-bold flex items-center gap-2">
+                                    <i class="fa-solid fa-plane text-emerald-600"></i> Nigeria ➔ United Kingdom (Air Freight)
+                                </td>
+                                <td class="p-4 font-mono">₦28,500 / kg</td>
+                                <td class="p-4 font-mono font-bold text-orange-600">₦38,000 / kg</td>
+                                <td class="p-4"><span class="bg-purple-100 text-purple-800 font-bold text-[11px] px-2.5 py-1 rounded-md">3 – 5 Business Days</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Explanation Box -->
+                <div class="mt-8 bg-slate-50 rounded-2xl p-6 border border-slate-200 grid md:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-2">
+                        <h4 class="font-bold text-navy-900 text-sm font-heading flex items-center gap-2">
+                            <i class="fa-solid fa-weight-hanging text-orange-500"></i> Volumetric Weight vs. Actual Weight
+                        </h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Logistics companies calculate charges based on space taken up as well as actual weight. For example, a large box of pillows weighs very little but takes up significant cargo space on our airplanes and haulage trucks.
+                        </p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 text-xs font-mono space-y-1">
+                        <span class="text-slate-400 block text-[10px] font-bold uppercase">IATA Volumetric Formula:</span>
+                        <p class="text-navy-900 font-bold">[ Length (cm) × Width (cm) × Height (cm) ] / 5000</p>
+                        <span class="text-orange-600 block text-[10px] font-semibold mt-1">* Billable Weight = MAX ( Actual Weight, Volumetric Weight )</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="py-16 bg-slateBg border-t border-slate-200" id="faqSection">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center mb-12">
+                    <span class="text-orange-500 font-bold uppercase text-xs tracking-widest">Rate Queries</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-800 font-heading mt-1">Frequently Asked Quotation Questions</h2>
+                    <p class="text-slate-500 text-xs sm:text-sm mt-2">Clear answers regarding freight billing, surcharges, and payment options.</p>
+                </div>
+
+                <div class="space-y-4">
+                    
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+                        <button onclick="toggleFaq('qFaq1')" class="w-full p-5 text-left bg-slate-50 font-bold text-navy-800 text-sm flex justify-between items-center hover:bg-slate-100 transition">
+                            <span>How is volumetric weight calculated by the rate engine?</span>
+                            <i id="qFaq1-icon" class="fa-solid fa-chevron-down text-orange-500 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="qFaq1" class="hidden p-5 text-xs sm:text-sm text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
+                            Volumetric weight measures the dimensional space your package occupies. The calculator multiplies the length, width, and height in centimeters and divides by 5000 (standard IATA industry multiplier). Whichever number is greater between actual weight and volumetric weight is used as the billable weight.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+                        <button onclick="toggleFaq('qFaq2')" class="w-full p-5 text-left bg-slate-50 font-bold text-navy-800 text-sm flex justify-between items-center hover:bg-slate-100 transition">
+                            <span>Are there hidden doorstep delivery or fuel surcharge fees?</span>
+                            <i id="qFaq2-icon" class="fa-solid fa-chevron-down text-orange-500 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="qFaq2" class="hidden p-5 text-xs sm:text-sm text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
+                            No! All rates computed by our calculator include doorstep pickup, fuel surcharges, road taxes, and delivery to the recipient's address. The price shown on your quote is the final amount payable.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+                        <button onclick="toggleFaq('qFaq3')" class="w-full p-5 text-left bg-slate-50 font-bold text-navy-800 text-sm flex justify-between items-center hover:bg-slate-100 transition">
+                            <span>How does Goods-In-Transit insurance protection work?</span>
+                            <i id="qFaq3-icon" class="fa-solid fa-chevron-down text-orange-500 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="qFaq3" class="hidden p-5 text-xs sm:text-sm text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
+                            When you check the Goods Insurance add-on box, a 1.5% premium is calculated based on your item's declared value. In the event of loss, theft, or physical damage in transit, SwiftHaul reimburses 100% of the verified declared value within 14 business days.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+                        <button onclick="toggleFaq('qFaq4')" class="w-full p-5 text-left bg-slate-50 font-bold text-navy-800 text-sm flex justify-between items-center hover:bg-slate-100 transition">
+                            <span>What payment options are accepted when booking a dispatch?</span>
+                            <i id="qFaq4-icon" class="fa-solid fa-chevron-down text-orange-500 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="qFaq4" class="hidden p-5 text-xs sm:text-sm text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
+                            We accept instant online card payments, bank transfers via Paystack/Flutterwave, POS payments upon rider pickup, and Cash on Delivery (COD) collections for registered merchant accounts.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="py-8 bg-amber-50/80 border-t border-amber-200 text-amber-900 text-xs" id="disclaimerNotice">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-start gap-3 leading-relaxed">
+                <i class="fa-solid fa-circle-exclamation text-amber-600 text-base mt-0.5"></i>
+                <div>
+                    <span class="font-bold block uppercase tracking-wider text-[11px]">Important Quotation Disclaimer:</span>
+                    Prices and delivery timeframes generated by this instant online calculator are illustrative estimates based on standard route parameters and user-entered values. Final shipping tariffs are confirmed upon physical weight and dimension measurement at the pickup hub or rider inspection.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-navy-900 text-slate-300 border-t border-navy-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+                
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center text-navy-900 text-xl font-black">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <span class="text-2xl font-bold tracking-tight text-white font-heading">Swift<span class="text-orange-500">Haul</span></span>
+                    </a>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                        SwiftHaul Logistics is Nigeria's premier technology-driven courier platform providing same-day urban dispatch, inter-state heavy haulage, and global air cargo shipping.
+                    </p>
+                    
+                    <!-- Newsletter Form -->
+                    <div class="pt-2">
+                        <span class="text-xs text-slate-300 font-semibold block mb-2">Subscribe for Logistics Insights & Tariff Alerts</span>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed to SwiftHaul Logistics Tariff Alerts!');" class="flex gap-2 max-w-sm">
+                            <input type="email" placeholder="Enter your email address" required class="bg-navy-800 border border-navy-700 text-xs px-3 py-2 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 flex-grow">
+                            <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold px-4 py-2 rounded-lg transition">Join</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Main Navigation</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="index.html" class="hover:text-orange-500 transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-orange-500 transition">About Company</a></li>
+                        <li><a href="services.html" class="hover:text-orange-500 transition">Our Services</a></li>
+                        <li><a href="tracking.html" class="hover:text-orange-500 transition">Track Package</a></li>
+                        <li><a href="contact.html" class="hover:text-orange-500 transition">Contact Desk</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Tools & Booking</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="request-delivery.html" class="hover:text-orange-500 transition">Request Delivery</a></li>
+                        <li><a href="quote.html" class="text-orange-400 font-bold">Rate Calculator</a></li>
+                        <li><a href="faq.html" class="hover:text-orange-500 transition">Help & FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Headquarters</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-3">
+                        <i class="fa-solid fa-location-dot text-orange-500 mr-1.5"></i> 14 Commercial Avenue, Sabo, Yaba, Lagos State.
+                    </p>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-3">
+                        <i class="fa-solid fa-phone text-orange-500 mr-1.5"></i> +234 (0) 700 SWIFTHAUL
+                    </p>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        <i class="fa-solid fa-envelope text-orange-500 mr-1.5"></i> support@swifthaul.ng
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-navy-800 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <div>&copy; 2026 SwiftHaul Logistics Nigeria Ltd. All rights reserved.</div>
+                <div class="flex items-center space-x-4 text-slate-400">
+                    <a href="#" class="hover:text-orange-500 transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition" aria-label="Twitter"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition" aria-label="Instagram"><i class="fa-brands fa-instagram text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp & Back to Top Widget -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+        <a href="https://wa.me/2348129990000?text=Hello%20SwiftHaul,%20I%20need%20a%20rate%20quote" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition" title="WhatsApp Rate Inquiry">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </a>
+        <button onclick="scrollToTop()" id="backToTopBtn" class="hidden w-12 h-12 bg-navy-800 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition border border-slate-600" title="Back to Top">
+            <i class="fa-solid fa-arrow-up text-base"></i>
+        </button>
+    </div>
+
+    <script>
+        let activeTier = 'standard';
+
+        window.addEventListener('DOMContentLoaded', () => {
+            runQuoteEngine();
+        });
+
+        function selectTier(tierName) {
+            activeTier = tierName;
+            
+            // Remove active classes
+            const tiers = ['standard', 'express', 'sameDay', 'airFreight'];
+            tiers.forEach(t => {
+                const label = document.getElementById(`label-${t}`);
+                if (label) label.classList.remove('tier-card-active');
+            });
+
+            // Set active label
+            const currentLabel = document.getElementById(`label-${tierName}`);
+            if (currentLabel) currentLabel.classList.add('tier-card-active');
+
+            // Check radio button
+            const radio = document.querySelector(`input[name="serviceTier"][value="${tierName}"]`);
+            if (radio) radio.checked = true;
+
+            runQuoteEngine();
+        }
+
+        /* Core Dynamic Rate Engine Calculation Function */
+        function runQuoteEngine() {
+            const origin = document.getElementById('quoteOrigin').value;
+            const dest = document.getElementById('quoteDest').value;
+            const actualWeight = parseFloat(document.getElementById('quoteWeight').value) || 0.5;
+            
+            const dimL = parseFloat(document.getElementById('dimL').value) || 0;
+            const dimW = parseFloat(document.getElementById('dimW').value) || 0;
+            const dimH = parseFloat(document.getElementById('dimH').value) || 0;
+
+            const itemValue = parseFloat(document.getElementById('quoteValue').value) || 0;
+
+            // Compute Volumetric Weight = (L x W x H) / 5000
+            const volumetricWeight = (dimL * dimW * dimH) / 5000;
+            document.getElementById('volumetricDisplay').textContent = `Volumetric: ${volumetricWeight.toFixed(2)} kg`;
+
+            // Billable weight is MAX(actualWeight, volumetricWeight)
+            const billableWeight = Math.max(actualWeight, volumetricWeight);
+
+            const isInternational = origin.includes('_Origin') || ['United Kingdom', 'United States', 'Canada', 'UAE', 'South Africa', 'China'].includes(dest);
+
+            let baseFare = 0;
+            let fuelSurcharge = 0;
+            let speedPremium = 0;
+            let slaWindow = "2 - 3 Business Days";
+
+            if (isInternational) {
+                baseFare = 22000 + (billableWeight * 6500);
+                fuelSurcharge = 4500;
+                slaWindow = "3 - 5 Business Days";
+            } else if (origin === dest) {
+                // Intra-city dispatch
+                baseFare = 1500 + (billableWeight * 300);
+                fuelSurcharge = 500;
+                slaWindow = "Same Day (Within 12 Hours)";
+            } else {
+                // Inter-state regional corridor
+                baseFare = 2500 + (billableWeight * 500);
+                fuelSurcharge = 1200;
+                slaWindow = "24 - 48 Hours";
+            }
+
+            // Apply Service Tier Multiplier
+            if (activeTier === 'express') {
+                speedPremium = Math.round((baseFare + fuelSurcharge) * 0.5);
+                slaWindow = isInternational ? "2 - 3 Business Days" : "Next Day (Under 24 Hours)";
+            } else if (activeTier === 'sameDay') {
+                speedPremium = Math.round((baseFare + fuelSurcharge) * 0.8);
+                slaWindow = "Flash Express (Under 8 Hours)";
+            } else if (activeTier === 'airFreight') {
+                speedPremium = Math.round((baseFare + fuelSurcharge) * 0.6);
+                slaWindow = "3 - 5 Days Air Cargo";
+            }
+
+            // Calculate Insurance Add-on (+1.5% of declared item value)
+            const hasInsurance = document.getElementById('addInsurance').checked;
+            const insuranceFee = hasInsurance ? Math.round(itemValue * 0.015) : 0;
+            document.getElementById('addonInsuranceVal').textContent = '₦' + insuranceFee.toLocaleString();
+
+            // Additional Checkboxes
+            const hasSecurity = document.getElementById('addSecurity').checked;
+            const hasFragile = document.getElementById('addFragile').checked;
+
+            let addOnsFee = 0;
+            if (hasSecurity) addOnsFee += 1500;
+            if (hasFragile) addOnsFee += 1000;
+
+            // Total Cost Computation
+            const totalCost = baseFare + fuelSurcharge + speedPremium + insuranceFee + addOnsFee;
+
+            // Update UI Labels
+            document.getElementById('resOrigin').textContent = origin.replace('_Origin', '');
+            document.getElementById('resDest').textContent = dest;
+            document.getElementById('resBillableWeight').textContent = `${billableWeight.toFixed(1)} kg Billable`;
+
+            document.getElementById('resBaseFare').textContent = '₦' + Math.round(baseFare).toLocaleString();
+            document.getElementById('resFuelSurcharge').textContent = '₦' + Math.round(fuelSurcharge).toLocaleString();
+            document.getElementById('resSpeedPremium').textContent = '₦' + Math.round(speedPremium).toLocaleString();
+            document.getElementById('resInsuranceFee').textContent = '₦' + Math.round(insuranceFee).toLocaleString();
+            document.getElementById('resAddonsFee').textContent = '₦' + Math.round(addOnsFee).toLocaleString();
+            
+            document.getElementById('resTotal').textContent = '₦' + Math.round(totalCost).toLocaleString();
+            document.getElementById('resSlaWindow').textContent = slaWindow;
+        }
+
+        /* Transfer Data over to request-delivery.html */
+        function bookWithQuote() {
+            const origin = document.getElementById('quoteOrigin').value.replace('_Origin', '');
+            const dest = document.getElementById('quoteDest').value;
+            const weight = Math.max(
+                parseFloat(document.getElementById('quoteWeight').value) || 1,
+                ((parseFloat(document.getElementById('dimL').value)||0)*(parseFloat(document.getElementById('dimW').value)||0)*(parseFloat(document.getElementById('dimH').value)||0))/5000
+            ).toFixed(1);
+
+            window.location.href = `request-delivery.html?origin=${encodeURIComponent(origin)}&dest=${encodeURIComponent(dest)}&weight=${encodeURIComponent(weight)}`;
+        }
+
+        function resetQuoteEngine() {
+            document.getElementById('quoteOrigin').value = 'Lagos';
+            document.getElementById('quoteDest').value = 'Abuja';
+            document.getElementById('quoteWeight').value = '3.0';
+            document.getElementById('dimL').value = '20';
+            document.getElementById('dimW').value = '20';
+            document.getElementById('dimH').value = '10';
+            document.getElementById('quoteValue').value = '50000';
+            
+            document.getElementById('addInsurance').checked = true;
+            document.getElementById('addPod').checked = true;
+            document.getElementById('addSecurity').checked = false;
+            document.getElementById('addFragile').checked = false;
+
+            selectTier('standard');
+        }
+
+        function toggleFaq(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backToTopBtn');
+            if (window.scrollY > 300) {
+                btn.classList.remove('hidden');
+            } else {
+                btn.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
+```
+
+### Key Highlights of `quote.html`:
+1. **Interactive Rate Computation Engine**: Automatically updates base freight tariff, fuel surcharges, priority speed premiums, and insurance costs in real-time in Nigerian Naira (`₦`).
+2. **Volumetric Weight Calculator**: Computes package cubic dimensions `(L x W x H / 5000)` and sets the billable weight as the higher value between actual and volumetric weight.
+3. **Seamless Data Transfer**: Clicking "Book Shipment with this Quote" forwards the route parameters (`origin`, `dest`, `weight`) straight into `request-delivery.html` via URL parameters.
+4. **Print & Recalculate Utilities**: Includes standard browser print stylesheet support and a single-click reset button.
+5. **Brand Consistency**: Styled using Deep Navy (`#102A43`), Bright Orange (`#FF8A00`), Tailwind v3, Inter/Poppins typography, and Font Awesome icons.

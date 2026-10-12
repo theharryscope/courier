@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Delivery & Book Dispatch - SwiftHaul Logistics Nigeria</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#F0F4F8',
+                            100: '#D9E2EC',
+                            700: '#243B53',
+                            800: '#102A43',
+                            900: '#091A2C',
+                        },
+                        orange: {
+                            500: '#FF8A00',
+                            600: '#E07800',
+                            700: '#B85E00',
+                        },
+                        slateBg: '#F5F7FA',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F5F7FA; color: #243B53; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(16, 42, 67, 0.95) 0%, rgba(9, 26, 44, 0.97) 100%), 
+                        url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #F5F7FA; }
+        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #FFFFFF;
+            border: 1px solid #CBD5E1;
+            border-radius: 0.75rem;
+            font-size: 0.875rem;
+            color: #102A43;
+            transition: all 0.2s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #FF8A00;
+            box-shadow: 0 0 0 3px rgba(255, 138, 0, 0.15);
+        }
+
+        .input-error {
+            border-color: #E11D48 !important;
+            box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.15) !important;
+        }
+
+        @media print {
+            header, footer, .hero-bg, .no-print { display: none !important; }
+            body { background: white; color: black; }
+            #receiptModalContent { display: block !important; box-shadow: none !important; border: none !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-orange-500 selection:text-white relative">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-navy-900 text-slate-300 text-xs md:text-sm py-2 px-4 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-bolt text-orange-500"></i> Instant Pickup Dispatch & Freight Booking</span>
+                <span class="hidden md:inline text-navy-700">|</span>
+                <span class="hidden md:inline-flex items-center gap-1.5"><i class="fa-solid fa-clock text-orange-500"></i> Hours: 24/7 Doorstep Operations</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="tel:+234700794384281" class="hover:text-orange-500 transition"><i class="fa-solid fa-phone text-orange-500 mr-1"></i> +234 (0) 700 SWIFTHAUL</a>
+                <span class="text-navy-700">|</span>
+                <a href="mailto:support@swifthaul.ng" class="hover:text-orange-500 transition"><i class="fa-regular fa-envelope mr-1"></i> support@swifthaul.ng</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-navy-800 text-white shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 bg-orange-500 rounded-xl flex items-center justify-center text-navy-900 text-2xl font-black shadow-lg transform group-hover:scale-105 transition">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold tracking-tight text-white font-heading">Swift<span class="text-orange-500">Haul</span></span>
+                        <span class="block text-[10px] text-slate-400 tracking-widest uppercase font-semibold">Logistics Nigeria</span>
+                    </div>
+                </a>
+
+                <!-- Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-xs xl:text-sm font-medium">
+                    <a href="index.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Home</a>
+                    <a href="about.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">About Us</a>
+                    <a href="services.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Services</a>
+                    <a href="tracking.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Track Shipment</a>
+                    <a href="request-delivery.html" class="px-3 py-2 rounded-lg text-orange-400 font-bold bg-navy-700/80 transition">Request a Delivery</a>
+                    <a href="contact.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Contact</a>
+                </nav>
+
+                <!-- Navigation CTAs -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="quote.html" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-orange-500/20 transform hover:-translate-y-0.5 transition flex items-center text-sm">
+                        <i class="fa-solid fa-calculator mr-2"></i> Get Instant Quote
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden text-slate-200 hover:text-white p-2 rounded-lg hover:bg-navy-700 focus:outline-none">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-navy-900 border-t border-navy-700 px-4 pt-3 pb-6 space-y-2">
+            <a href="index.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Home</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="about.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>About Us</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="services.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Services</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="tracking.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Track Shipment</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="request-delivery.html" class="w-full text-left px-3 py-2.5 rounded-lg bg-orange-500/10 text-orange-400 font-bold flex items-center justify-between"><span>Request a Delivery</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="quote.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Get Quote</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="contact.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Contact Us</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="faq.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>FAQs</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+        <!-- Hero Section -->
+        <section class="hero-bg text-white py-14 md:py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <nav class="flex justify-center items-center gap-2 text-xs text-slate-300 font-medium uppercase tracking-wider mb-4">
+                    <a href="index.html" class="hover:text-orange-400 transition">Home</a>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-orange-500"></i>
+                    <span class="text-orange-400">Request a Delivery</span>
+                </nav>
+
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading leading-tight">
+                    Book a Shipment / <span class="text-orange-500">Request Pickup</span>
+                </h1>
+                <p class="text-slate-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mt-3 leading-relaxed">
+                    Schedule doorstep parcel pickup across Nigeria. Fill in your shipment details for real-time dispatch assignment and live rate computation.
+                </p>
+            </div>
+        </section>
+
+        <!-- Form Section with Live Summary Sidebar -->
+        <section class="py-12 bg-slateBg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid lg:grid-cols-12 gap-8 items-start">
+
+                    <!-- Left: Interactive Delivery Form (8 Columns) -->
+                    <div class="lg:col-span-8 bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-200">
+                        
+                        <!-- Form Header Stepper Navigation -->
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-6 mb-8 overflow-x-auto">
+                            <button type="button" onclick="switchStep(1)" id="stepTab1" class="flex items-center gap-2 text-xs sm:text-sm font-bold text-orange-500 border-b-2 border-orange-500 pb-2 transition whitespace-nowrap">
+                                <span class="w-6 h-6 rounded-full bg-orange-500 text-white flex items-center justify-center text-xs">1</span>
+                                <span>Sender & Pickup</span>
+                            </button>
+                            <div class="w-8 h-0.5 bg-slate-200 hidden sm:block"></div>
+                            <button type="button" onclick="switchStep(2)" id="stepTab2" class="flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-400 pb-2 transition whitespace-nowrap">
+                                <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs">2</span>
+                                <span>Recipient Details</span>
+                            </button>
+                            <div class="w-8 h-0.5 bg-slate-200 hidden sm:block"></div>
+                            <button type="button" onclick="switchStep(3)" id="stepTab3" class="flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-400 pb-2 transition whitespace-nowrap">
+                                <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center text-xs">3</span>
+                                <span>Package Specs & Add-ons</span>
+                            </button>
+                        </div>
+
+                        <form id="deliveryBookingForm" onsubmit="handleDeliverySubmit(event)" novalidate class="space-y-8">
+
+                            <!-- SECTION 1: SENDER & PICKUP DETAILS -->
+                            <div id="stepSection1" class="space-y-6">
+                                <div>
+                                    <h3 class="text-base font-bold text-navy-900 font-heading flex items-center gap-2">
+                                        <i class="fa-solid fa-user-tag text-orange-500"></i> Section 1: Sender Information
+                                    </h3>
+                                    <p class="text-xs text-slate-500 mt-1">Details of the person or entity giving out the package.</p>
+                                </div>
+
+                                <div class="grid sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Sender Full Name *</label>
+                                        <input type="text" id="senderName" placeholder="e.g. Adebayo Johnson" required class="input-field" oninput="calculateEstimate()">
+                                        <span id="err-senderName" class="text-[11px] text-rose-600 hidden font-medium mt-1">Please enter sender full name.</span>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Phone Number *</label>
+                                        <input type="tel" id="senderPhone" placeholder="e.g. +234 801 234 5678" required class="input-field" oninput="calculateEstimate()">
+                                        <span id="err-senderPhone" class="text-[11px] text-rose-600 hidden font-medium mt-1">Valid Nigerian phone number required (+234...).</span>
+                                    </div>
+                                </div>
+
+                                <div class="grid sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Email Address *</label>
+                                        <input type="email" id="senderEmail" placeholder="e.g. adebayo@example.com" required class="input-field">
+                                        <span id="err-senderEmail" class="text-[11px] text-rose-600 hidden font-medium mt-1">Valid email address required.</span>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Origin State/City *</label>
+                                        <select id="originCity" required class="input-field bg-white" onchange="calculateEstimate()">
+                                            <option value="Lagos">Lagos State (Hub HQ)</option>
+                                            <option value="Abuja">Abuja (FCT Hub)</option>
+                                            <option value="Port Harcourt">Port Harcourt (Rivers)</option>
+                                            <option value="Kano">Kano (Kano Hub)</option>
+                                            <option value="Ibadan">Ibadan (Oyo)</option>
+                                            <option value="Onitsha">Onitsha (Anambra)</option>
+                                            <option value="Enugu">Enugu (Enugu)</option>
+                                            <option value="Benin">Benin City (Edo)</option>
+                                            <option value="Abeokuta">Abeokuta (Ogun)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="pt-4 border-t border-slate-100">
+                                    <h3 class="text-base font-bold text-navy-900 font-heading flex items-center gap-2 mb-4">
+                                        <i class="fa-solid fa-location-dot text-orange-500"></i> Section 2: Doorstep Pickup Location
+                                    </h3>
+                                    
+                                    <div class="space-y-4">
+                                        <div>
+                                            <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Detailed Pickup Address *</label>
+                                            <textarea id="pickupAddress" rows="2" placeholder="e.g. Plot 14, Commercial Avenue, Ikeja Industrial Estate, Lagos" required class="input-field"></textarea>
+                                            <span id="err-pickupAddress" class="text-[11px] text-rose-600 hidden font-medium mt-1">Please provide a specific street address.</span>
+                                        </div>
+
+                                        <div class="grid sm:grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Preferred Pickup Date *</label>
+                                                <input type="date" id="pickupDate" required class="input-field">
+                                                <span id="err-pickupDate" class="text-[11px] text-rose-600 hidden font-medium mt-1">Select a valid pickup date.</span>
+                                            </div>
+                                            <div>
+                                                <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Pickup Time Window *</label>
+                                                <select id="pickupTime" required class="input-field bg-white">
+                                                    <option value="Morning (08:00 AM - 12:00 PM)">Morning Slot (08:00 AM - 12:00 PM)</option>
+                                                    <option value="Afternoon (12:00 PM - 04:00 PM)">Afternoon Slot (12:00 PM - 04:00 PM)</option>
+                                                    <option value="Evening (04:00 PM - 08:00 PM)">Evening Slot (04:00 PM - 08:00 PM)</option>
+                                                    <option value="Express Immediate (Within 60 Mins)">Express Immediate (Within 60 Mins)</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-end pt-4">
+                                    <button type="button" onclick="nextStep(2)" class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-xl transition shadow-lg text-sm flex items-center gap-2">
+                                        Next: Recipient Details <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- SECTION 2: RECIPIENT DETAILS -->
+                            <div id="stepSection2" class="hidden space-y-6">
+                                <div>
+                                    <h3 class="text-base font-bold text-navy-900 font-heading flex items-center gap-2">
+                                        <i class="fa-solid fa-user-check text-orange-500"></i> Section 3: Recipient Information
+                                    </h3>
+                                    <p class="text-xs text-slate-500 mt-1">Details of the receiver for security verification & SMS notifications.</p>
+                                </div>
+
+                                <div class="grid sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Recipient Full Name *</label>
+                                        <input type="text" id="recipientName" placeholder="e.g. Chidi Okonkwo" required class="input-field" oninput="calculateEstimate()">
+                                        <span id="err-recipientName" class="text-[11px] text-rose-600 hidden font-medium mt-1">Please enter recipient full name.</span>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Recipient Phone Number *</label>
+                                        <input type="tel" id="recipientPhone" placeholder="e.g. +234 805 987 6543" required class="input-field">
+                                        <span id="err-recipientPhone" class="text-[11px] text-rose-600 hidden font-medium mt-1">Valid recipient phone number required (+234...).</span>
+                                    </div>
+                                </div>
+
+                                <div class="grid sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Destination State/City *</label>
+                                        <select id="destCity" required class="input-field bg-white" onchange="calculateEstimate()">
+                                            <option value="Abuja">Abuja (FCT Hub)</option>
+                                            <option value="Lagos">Lagos State (Hub HQ)</option>
+                                            <option value="Port Harcourt">Port Harcourt (Rivers)</option>
+                                            <option value="Kano">Kano (Kano Hub)</option>
+                                            <option value="Ibadan">Ibadan (Oyo)</option>
+                                            <option value="Onitsha">Onitsha (Anambra)</option>
+                                            <option value="Enugu">Enugu (Enugu)</option>
+                                            <option value="Benin">Benin City (Edo)</option>
+                                            <option value="Abeokuta">Abeokuta (Ogun)</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Alternate Phone (Optional)</label>
+                                        <input type="tel" id="recipientAltPhone" placeholder="e.g. +234 703 000 0000" class="input-field">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Full Delivery Address *</label>
+                                    <textarea id="deliveryAddress" rows="3" placeholder="e.g. Suite 402, Capital Plaza, Ahmed Bello Way, Garki 2, Abuja" required class="input-field"></textarea>
+                                    <span id="err-deliveryAddress" class="text-[11px] text-rose-600 hidden font-medium mt-1">Full delivery address is required.</span>
+                                </div>
+
+                                <div class="flex justify-between items-center pt-4">
+                                    <button type="button" onclick="switchStep(1)" class="bg-slate-100 hover:bg-slate-200 text-navy-800 font-bold px-6 py-3 rounded-xl transition text-sm flex items-center gap-2">
+                                        <i class="fa-solid fa-arrow-left"></i> Back
+                                    </button>
+                                    <button type="button" onclick="nextStep(3)" class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-xl transition shadow-lg text-sm flex items-center gap-2">
+                                        Next: Package Details <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- SECTION 3: PACKAGE DETAILS & VALUE ADDED SERVICES -->
+                            <div id="stepSection3" class="hidden space-y-6">
+                                <div>
+                                    <h3 class="text-base font-bold text-navy-900 font-heading flex items-center gap-2">
+                                        <i class="fa-solid fa-box-open text-orange-500"></i> Section 4: Package & Service Tier
+                                    </h3>
+                                    <p class="text-xs text-slate-500 mt-1">Specify item dimensions, category, and delivery speed tier.</p>
+                                </div>
+
+                                <div class="grid sm:grid-cols-3 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Item Category *</label>
+                                        <select id="pkgCategory" required class="input-field bg-white">
+                                            <option value="Documents / Official Papers">Documents / Legal Papers</option>
+                                            <option value="Electronics & Gadgets">Electronics & Gadgets</option>
+                                            <option value="Apparel & Fashion Items">Fashion & Apparel</option>
+                                            <option value="Industrial / Machinery Parts">Industrial / Heavy Parts</option>
+                                            <option value="Perishable / Food Items">Perishable / Food Stuff</option>
+                                            <option value="Fragile & Glassware">Fragile & Glassware</option>
+                                            <option value="General Merchandise">General Merchandise</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Estimated Weight (kg) *</label>
+                                        <input type="number" id="pkgWeight" min="0.5" max="500" step="0.5" value="2" required class="input-field" oninput="calculateEstimate()">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Quantity (Pieces)</label>
+                                        <input type="number" id="pkgQty" min="1" max="100" value="1" class="input-field" oninput="calculateEstimate()">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Delivery Service Tier *</label>
+                                    <div class="grid sm:grid-cols-2 gap-3">
+                                        <label class="border border-slate-200 rounded-2xl p-4 flex items-start gap-3 cursor-pointer hover:border-orange-500 transition">
+                                            <input type="radio" name="serviceTier" value="standard" checked onclick="calculateEstimate()" class="mt-1 text-orange-500 focus:ring-orange-500">
+                                            <div>
+                                                <span class="block text-xs font-bold text-navy-900">Standard Economy Cargo</span>
+                                                <span class="text-[11px] text-slate-500">2-3 Business Days • Base Tariff</span>
+                                            </div>
+                                        </label>
+
+                                        <label class="border border-slate-200 rounded-2xl p-4 flex items-start gap-3 cursor-pointer hover:border-orange-500 transition">
+                                            <input type="radio" name="serviceTier" value="express" onclick="calculateEstimate()" class="mt-1 text-orange-500 focus:ring-orange-500">
+                                            <div>
+                                                <span class="block text-xs font-bold text-navy-900">Express Priority Dispatch</span>
+                                                <span class="text-[11px] text-slate-500">Same-Day / Overnight • +50% Speed Surcharge</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Item Description & Handling Notes</label>
+                                    <textarea id="pkgDescription" rows="2" placeholder="e.g. HP Laptop with Charger. Handle with extreme care, fragile screen." class="input-field"></textarea>
+                                </div>
+
+                                <!-- Section 5: Value Added Services -->
+                                <div class="pt-4 border-t border-slate-100 space-y-3">
+                                    <h3 class="text-xs font-bold text-navy-800 uppercase tracking-wider flex items-center gap-2">
+                                        <i class="fa-solid fa-shield-halved text-orange-500"></i> Section 5: Value Added Services & Protection
+                                    </h3>
+
+                                    <div class="space-y-2.5">
+                                        <label class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-100 transition">
+                                            <input type="checkbox" id="addInsurance" onchange="calculateEstimate()" class="w-4 h-4 text-orange-500 rounded focus:ring-orange-500">
+                                            <span>Full Goods-In-Transit Insurance Coverage (+₦1,500)</span>
+                                        </label>
+
+                                        <label class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-100 transition">
+                                            <input type="checkbox" id="addCod" onchange="calculateEstimate()" class="w-4 h-4 text-orange-500 rounded focus:ring-orange-500">
+                                            <span>Cash / POS Collection on Delivery COD (+₦1,000)</span>
+                                        </label>
+
+                                        <label class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs font-medium cursor-pointer hover:bg-slate-100 transition">
+                                            <input type="checkbox" id="addSms" checked onchange="calculateEstimate()" class="w-4 h-4 text-orange-500 rounded focus:ring-orange-500">
+                                            <span>SMS & WhatsApp Real-Time Recipient Alerts (Free)</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-between items-center pt-4">
+                                    <button type="button" onclick="switchStep(2)" class="bg-slate-100 hover:bg-slate-200 text-navy-800 font-bold px-6 py-3 rounded-xl transition text-sm flex items-center gap-2">
+                                        <i class="fa-solid fa-arrow-left"></i> Back
+                                    </button>
+                                    <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white font-black px-10 py-3.5 rounded-xl transition shadow-xl text-sm flex items-center gap-2">
+                                        <i class="fa-solid fa-paper-plane"></i> Confirm & Book Dispatch
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                    <!-- Right: Live Cost Calculation Breakdown Box (4 Columns) -->
+                    <div class="lg:col-span-4 sticky top-28 space-y-6">
+                        
+                        <div class="bg-navy-900 text-white rounded-3xl p-6 sm:p-7 shadow-xl border border-navy-800 space-y-6">
+                            <div class="flex items-center justify-between border-b border-navy-800 pb-4">
+                                <h3 class="font-bold text-sm text-white font-heading uppercase tracking-wider flex items-center gap-2">
+                                    <i class="fa-solid fa-calculator text-orange-500"></i> Dispatch Estimate
+                                </h3>
+                                <span class="bg-orange-500/20 text-orange-400 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Live Telemetry</span>
+                            </div>
+
+                            <!-- Route Visual -->
+                            <div class="bg-navy-800/80 p-3.5 rounded-2xl border border-navy-700 text-xs flex items-center justify-between">
+                                <div class="text-left">
+                                    <span class="text-[10px] text-slate-400 uppercase block font-semibold">Origin</span>
+                                    <span id="calcOrigin" class="font-bold text-white text-sm">Lagos</span>
+                                </div>
+                                <i class="fa-solid fa-arrow-right-long text-orange-500 text-base"></i>
+                                <div class="text-right">
+                                    <span class="text-[10px] text-slate-400 uppercase block font-semibold">Destination</span>
+                                    <span id="calcDest" class="font-bold text-white text-sm">Abuja</span>
+                                </div>
+                            </div>
+
+                            <!-- Price Breakdown List -->
+                            <div class="space-y-3 text-xs border-b border-navy-800 pb-4">
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Base Freight Tariff:</span>
+                                    <span id="calcBase" class="font-mono font-semibold text-white">₦2,500</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Weight Charge (<span id="calcWeightLabel">2</span> kg):</span>
+                                    <span id="calcWeightFee" class="font-mono font-semibold text-white">₦1,000</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Route Distance Fee:</span>
+                                    <span id="calcRouteFee" class="font-mono font-semibold text-white">₦1,500</span>
+                                </div>
+                                <div class="flex justify-between text-slate-300">
+                                    <span>Selected Add-ons:</span>
+                                    <span id="calcAddonsFee" class="font-mono font-semibold text-white">₦0</span>
+                                </div>
+                            </div>
+
+                            <!-- Total Price Highlight -->
+                            <div class="pt-1 flex items-center justify-between">
+                                <div>
+                                    <span class="text-[10px] text-slate-400 uppercase tracking-widest font-bold block">Estimated Total</span>
+                                    <span class="text-[10px] text-emerald-400 font-medium">VAT & Fuel Surcharge Included</span>
+                                </div>
+                                <div class="text-right">
+                                    <span id="calcTotal" class="text-2xl sm:text-3xl font-black text-orange-400 font-mono">₦5,000</span>
+                                </div>
+                            </div>
+
+                            <!-- Guarantee Box -->
+                            <div class="bg-navy-800/50 p-3 rounded-xl border border-navy-700/60 text-[11px] text-slate-400 space-y-1.5">
+                                <p class="flex items-center gap-1.5 text-slate-300 font-semibold">
+                                    <i class="fa-solid fa-shield-check text-emerald-400"></i> Guaranteed Doorstep Delivery
+                                </p>
+                                <p class="leading-relaxed">
+                                    Final cost confirmed upon physical weight scan at origin station.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Direct Support Widget -->
+                        <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm text-xs space-y-3">
+                            <h4 class="font-bold text-navy-900 font-heading flex items-center gap-2">
+                                <i class="fa-solid fa-headset text-orange-500"></i> Need Assistance?
+                            </h4>
+                            <p class="text-slate-500 leading-relaxed">
+                                Have bulk corporate shipments or heavy cargo over 500kg? Speak directly to our logistics team.
+                            </p>
+                            <a href="tel:+234700794384281" class="w-full bg-slate-100 hover:bg-slate-200 text-navy-900 font-bold py-2.5 rounded-xl transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-phone text-orange-500"></i> Call Support Line
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Guidelines & FAQs Section -->
+        <section class="py-16 bg-white border-t border-slate-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-orange-500 font-bold uppercase text-xs tracking-widest">Booking Guidance</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-800 font-heading mt-1">Frequently Asked Questions</h2>
+                    <p class="text-slate-500 text-xs sm:text-sm mt-2">Important information before scheduling your pickup.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq('faq1')" class="w-full p-5 text-left bg-slate-50 font-bold text-navy-800 text-sm flex justify-between items-center hover:bg-slate-100 transition">
+                            <span>What are the daily cutoff times for same-day pickup?</span>
+                            <i id="faq1-icon" class="fa-solid fa-chevron-down text-orange-500 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="faq1" class="hidden p-5 text-xs sm:text-sm text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
+                            For same-day urban dispatch within Lagos, Abuja, or Port Harcourt, pickup requests must be booked before 1:00 PM (WAT). Requests made after 1:00 PM are scheduled for early morning pickup the next business day.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq('faq2')" class="w-full p-5 text-left bg-slate-50 font-bold text-navy-800 text-sm flex justify-between items-center hover:bg-slate-100 transition">
+                            <span>Are there prohibited or restricted items?</span>
+                            <i id="faq2-icon" class="fa-solid fa-chevron-down text-orange-500 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="faq2" class="hidden p-5 text-xs sm:text-sm text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
+                            Yes. SwiftHaul strictly prohibits firearms, illegal substances, unregistered narcotics, hazardous chemicals, highly flammable liquids, and counterfeit currency. All parcels are subject to physical scan at our hubs.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq('faq3')" class="w-full p-5 text-left bg-slate-50 font-bold text-navy-800 text-sm flex justify-between items-center hover:bg-slate-100 transition">
+                            <span>How does Cash on Delivery (COD) collection work?</span>
+                            <i id="faq3-icon" class="fa-solid fa-chevron-down text-orange-500 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="faq3" class="hidden p-5 text-xs sm:text-sm text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
+                            When enabled, our dispatch rider collects payment from the recipient via POS transfer or cash upon package delivery. The funds are remitted to the merchant/sender's bank account within 24 hours.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Booking Confirmation Modal Dialog -->
+    <div id="bookingModal" class="hidden fixed inset-0 z-50 bg-navy-900/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative animate-fade-in" id="receiptModalContent">
+            
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div class="text-center">
+                <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-widest border border-emerald-200">
+                    Booking Confirmed
+                </span>
+                <h3 class="text-xl font-bold text-navy-900 font-heading mt-2">Shipment Dispatch Created!</h3>
+                <p class="text-xs text-slate-500 mt-1">Your courier dispatch order has been successfully queued in our terminal.</p>
+            </div>
+
+            <!-- Receipt Box -->
+            <div class="bg-slate-50 rounded-2xl p-4 my-6 border border-slate-200 text-xs space-y-3 font-mono">
+                <div class="flex justify-between border-b border-slate-200 pb-2">
+                    <span class="text-slate-500">Waybill Tracking Code:</span>
+                    <span id="modalWaybill" class="font-bold text-navy-900 text-sm">SHL202699882</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Sender:</span>
+                    <span id="modalSender" class="font-bold text-navy-900">Adebayo J.</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Recipient:</span>
+                    <span id="modalRecipient" class="font-bold text-navy-900">Chidi O.</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Route Corridor:</span>
+                    <span id="modalRoute" class="font-bold text-navy-900">Lagos → Abuja</span>
+                </div>
+                <div class="flex justify-between border-t border-slate-200 pt-2 font-sans font-bold">
+                    <span class="text-navy-900">Estimated Cost:</span>
+                    <span id="modalTotal" class="text-orange-600 text-sm font-mono">₦5,000</span>
+                </div>
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div class="space-y-2.5 no-print">
+                <button onclick="goToTracking()" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition text-xs flex items-center justify-center gap-2 shadow-lg">
+                    <i class="fa-solid fa-location-crosshairs"></i> Track This Package Live
+                </button>
+                <button onclick="window.print()" class="w-full bg-slate-100 hover:bg-slate-200 text-navy-800 font-bold py-3 rounded-xl transition text-xs flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-print"></i> Print Booking Receipt
+                </button>
+                <button onclick="closeModal()" class="w-full text-slate-400 hover:text-slate-600 text-xs font-semibold py-1">
+                    Close Window
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-navy-900 text-slate-300 border-t border-navy-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center text-navy-900 text-xl font-black">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <span class="text-2xl font-bold tracking-tight text-white font-heading">Swift<span class="text-orange-500">Haul</span></span>
+                    </a>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                        SwiftHaul Logistics is Nigeria's premier technology-driven courier platform providing same-day urban dispatch, inter-state heavy haulage, and global air cargo shipping.
+                    </p>
+                    
+                    <!-- Newsletter Form -->
+                    <div class="pt-2">
+                        <span class="text-xs text-slate-300 font-semibold block mb-2">Subscribe for Logistics Insights</span>
+                        <form onsubmit="event.preventDefault(); alert('Subscribed successfully!');" class="flex gap-2 max-w-sm">
+                            <input type="email" placeholder="Enter your email" required class="bg-navy-800 border border-navy-700 text-xs px-3 py-2 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 flex-grow">
+                            <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold px-4 py-2 rounded-lg transition">Join</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Main Pages</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="index.html" class="hover:text-orange-500 transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-orange-500 transition">About Company</a></li>
+                        <li><a href="services.html" class="hover:text-orange-500 transition">Our Services</a></li>
+                        <li><a href="tracking.html" class="hover:text-orange-500 transition">Track Package</a></li>
+                        <li><a href="contact.html" class="hover:text-orange-500 transition">Contact Desk</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Tools & Booking</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="request-delivery.html" class="text-orange-400 font-bold">Request a Delivery</a></li>
+                        <li><a href="quote.html" class="hover:text-orange-500 transition">Rate Calculator</a></li>
+                        <li><a href="faq.html" class="hover:text-orange-500 transition">Help & FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Legal Policies</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="shipping.html" class="hover:text-orange-500 transition">Shipping Policy</a></li>
+                        <li><a href="privacy.html" class="hover:text-orange-500 transition">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-orange-500 transition">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-navy-800 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <div>&copy; 2026 SwiftHaul Logistics Nigeria Ltd. All rights reserved.</div>
+                <div class="flex items-center space-x-4 text-slate-400">
+                    <a href="#" class="hover:text-orange-500 transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition"><i class="fa-brands fa-instagram text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp & Back to Top Widget -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+        <a href="https://wa.me/2348129990000" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition" title="WhatsApp Support">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </a>
+        <button onclick="scrollToTop()" id="backToTopBtn" class="hidden w-12 h-12 bg-navy-800 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition border border-slate-600" title="Back to Top">
+            <i class="fa-solid fa-arrow-up text-base"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        let currentGeneratedCode = '';
+
+        /* Initialize URL parameters (if transferred from quote.html) */
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            if (urlParams.get('origin')) document.getElementById('originCity').value = urlParams.get('origin');
+            if (urlParams.get('dest')) document.getElementById('destCity').value = urlParams.get('dest');
+            if (urlParams.get('weight')) document.getElementById('pkgWeight').value = urlParams.get('weight');
+            
+            // Set minimum pickup date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('pickupDate').value = today;
+            document.getElementById('pickupDate').min = today;
+
+            calculateEstimate();
+        });
+
+        /* Tab Switch Logic */
+        function switchStep(stepNum) {
+            document.getElementById('stepSection1').classList.add('hidden');
+            document.getElementById('stepSection2').classList.add('hidden');
+            document.getElementById('stepSection3').classList.add('hidden');
+
+            document.getElementById('stepTab1').className = 'flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-400 pb-2 transition whitespace-nowrap';
+            document.getElementById('stepTab2').className = 'flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-400 pb-2 transition whitespace-nowrap';
+            document.getElementById('stepTab3').className = 'flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-400 pb-2 transition whitespace-nowrap';
+
+            if (stepNum === 1) {
+                document.getElementById('stepSection1').classList.remove('hidden');
+                document.getElementById('stepTab1').className = 'flex items-center gap-2 text-xs sm:text-sm font-bold text-orange-500 border-b-2 border-orange-500 pb-2 transition whitespace-nowrap';
+            } else if (stepNum === 2) {
+                document.getElementById('stepSection2').classList.remove('hidden');
+                document.getElementById('stepTab2').className = 'flex items-center gap-2 text-xs sm:text-sm font-bold text-orange-500 border-b-2 border-orange-500 pb-2 transition whitespace-nowrap';
+            } else if (stepNum === 3) {
+                document.getElementById('stepSection3').classList.remove('hidden');
+                document.getElementById('stepTab3').className = 'flex items-center gap-2 text-xs sm:text-sm font-bold text-orange-500 border-b-2 border-orange-500 pb-2 transition whitespace-nowrap';
+            }
+        }
+
+        function nextStep(targetStep) {
+            if (targetStep === 2) {
+                // Validate Step 1
+                const senderName = document.getElementById('senderName');
+                const senderPhone = document.getElementById('senderPhone');
+                const senderEmail = document.getElementById('senderEmail');
+                const pickupAddress = document.getElementById('pickupAddress');
+                let isValid = true;
+
+                if (!senderName.value.trim()) { showError('senderName', true); isValid = false; } else showError('senderName', false);
+                if (!senderPhone.value.trim() || senderPhone.value.length < 10) { showError('senderPhone', true); isValid = false; } else showError('senderPhone', false);
+                if (!senderEmail.value.includes('@')) { showError('senderEmail', true); isValid = false; } else showError('senderEmail', false);
+                if (!pickupAddress.value.trim()) { showError('pickupAddress', true); isValid = false; } else showError('pickupAddress', false);
+
+                if (isValid) switchStep(2);
+            } else if (targetStep === 3) {
+                // Validate Step 2
+                const recipientName = document.getElementById('recipientName');
+                const recipientPhone = document.getElementById('recipientPhone');
+                const deliveryAddress = document.getElementById('deliveryAddress');
+                let isValid = true;
+
+                if (!recipientName.value.trim()) { showError('recipientName', true); isValid = false; } else showError('recipientName', false);
+                if (!recipientPhone.value.trim() || recipientPhone.value.length < 10) { showError('recipientPhone', true); isValid = false; } else showError('recipientPhone', false);
+                if (!deliveryAddress.value.trim()) { showError('deliveryAddress', true); isValid = false; } else showError('deliveryAddress', false);
+
+                if (isValid) switchStep(3);
+            }
+        }
+
+        function showError(fieldId, show) {
+            const field = document.getElementById(fieldId);
+            const errSpan = document.getElementById('err-' + fieldId);
+            if (show) {
+                field.classList.add('input-error');
+                if (errSpan) errSpan.classList.remove('hidden');
+            } else {
+                field.classList.remove('input-error');
+                if (errSpan) errSpan.classList.add('hidden');
+            }
+        }
+
+        /* Dynamic Price Calculation Engine */
+        function calculateEstimate() {
+            const origin = document.getElementById('originCity').value;
+            const dest = document.getElementById('destCity').value;
+            const weight = parseFloat(document.getElementById('pkgWeight').value) || 1;
+            const qty = parseInt(document.getElementById('pkgQty').value) || 1;
+
+            const isExpress = document.querySelector('input[name="serviceTier"]:checked').value === 'express';
+            const hasInsurance = document.getElementById('addInsurance').checked;
+            const hasCod = document.getElementById('addCod').checked;
+
+            document.getElementById('calcOrigin').textContent = origin;
+            document.getElementById('calcDest').textContent = dest;
+            document.getElementById('calcWeightLabel').textContent = weight * qty;
+
+            let baseTariff = 2500;
+            let weightFee = Math.ceil(weight * qty) * 500;
+            let routeFee = (origin === dest) ? 1000 : 3500;
+
+            let addOnsFee = 0;
+            if (hasInsurance) addOnsFee += 1500;
+            if (hasCod) addOnsFee += 1000;
+
+            let subtotal = baseTariff + weightFee + routeFee + addOnsFee;
+            if (isExpress) subtotal = Math.round(subtotal * 1.5);
+
+            document.getElementById('calcBase').textContent = '₦' + baseTariff.toLocaleString();
+            document.getElementById('calcWeightFee').textContent = '₦' + weightFee.toLocaleString();
+            document.getElementById('calcRouteFee').textContent = '₦' + routeFee.toLocaleString();
+            document.getElementById('calcAddonsFee').textContent = '₦' + addOnsFee.toLocaleString();
+            document.getElementById('calcTotal').textContent = '₦' + subtotal.toLocaleString();
+
+            return subtotal;
+        }
+
+        /* Form Submission & Mock Waybill Generation */
+        function handleDeliverySubmit(event) {
+            event.preventDefault();
+
+            const sender = document.getElementById('senderName').value || 'Customer';
+            const recipient = document.getElementById('recipientName').value || 'Recipient';
+            const origin = document.getElementById('originCity').value;
+            const dest = document.getElementById('destCity').value;
+            const totalCost = document.getElementById('calcTotal').textContent;
+
+            // Generate Random SwiftHaul Waybill Code
+            const randomDigits = Math.floor(100000 + Math.random() * 900000);
+            currentGeneratedCode = 'SHL2026' + randomDigits;
+
+            document.getElementById('modalWaybill').textContent = currentGeneratedCode;
+            document.getElementById('modalSender').textContent = sender;
+            document.getElementById('modalRecipient').textContent = recipient;
+            document.getElementById('modalRoute').textContent = `${origin} → ${dest}`;
+            document.getElementById('modalTotal').textContent = totalCost;
+
+            document.getElementById('bookingModal').classList.remove('hidden');
+        }
+
+        function goToTracking() {
+            if (currentGeneratedCode) {
+                window.location.href = `tracking.html?tracking=${currentGeneratedCode}`;
+            } else {
+                window.location.href = 'tracking.html';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        function toggleFaq(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backToTopBtn');
+            if (window.scrollY > 300) {
+                btn.classList.remove('hidden');
+            } else {
+                btn.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
+```
+
+### Summary of Features Created:
+1. **Interactive Multi-Step Form**: Step-by-step navigation separating sender details, doorstep pickup coordinates, recipient info, item specs, and value-added insurance/COD options.
+2. **Dynamic Price Calculator Engine**: Computes shipping tariffs in Nigerian Naira (₦) live as the user changes weight, cities, or service tiers (standard vs. express priority).
+3. **URL Parameter Sync**: Accepts prefilled details passed over from `quote.html` seamlessly.
+4. **Instant Mock Waybill Generation**: Generates a valid waybill tracking code (e.g. `SHL2026XXXXXX`) upon booking confirmation, enabling direct tracking via `tracking.html?tracking=CODE`.
+5. **Printable Booking Receipt Modal**: Formatted print preview output for waybill confirmation receipts.

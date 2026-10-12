@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us & Logistics Hubs - SwiftHaul Logistics Nigeria</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#F0F4F8',
+                            100: '#D9E2EC',
+                            700: '#243B53',
+                            800: '#102A43',
+                            900: '#091A2C',
+                        },
+                        orange: {
+                            500: '#FF8A00',
+                            600: '#E07800',
+                            700: '#B85E00',
+                        },
+                        slateBg: '#F5F7FA',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS Styles -->
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F5F7FA; color: #243B53; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(16, 42, 67, 0.95) 0%, rgba(9, 26, 44, 0.97) 100%), 
+                        url('https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #F5F7FA; }
+        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #FFFFFF;
+            border: 1px solid #CBD5E1;
+            border-radius: 0.75rem;
+            font-size: 0.875rem;
+            color: #102A43;
+            transition: all 0.2s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #FF8A00;
+            box-shadow: 0 0 0 3px rgba(255, 138, 0, 0.15);
+        }
+
+        .input-error {
+            border-color: #E11D48 !important;
+            box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.15) !important;
+        }
+
+        @media print {
+            header, footer, .hero-bg, .no-print { display: none !important; }
+            body { background: white; color: black; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-orange-500 selection:text-white relative">
+
+    <div class="bg-navy-900 text-slate-300 text-xs md:text-sm py-2 px-4 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-headset text-orange-500"></i> 24/7 National Dispatch Hotline</span>
+                <span class="hidden md:inline text-navy-700">|</span>
+                <span class="hidden md:inline-flex items-center gap-1.5"><i class="fa-solid fa-clock text-orange-500"></i> Operating Hours: Always Open</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="tel:+234700794384281" class="hover:text-orange-500 transition"><i class="fa-solid fa-phone text-orange-500 mr-1"></i> +234 (0) 700 SWIFTHAUL</a>
+                <span class="text-navy-700">|</span>
+                <a href="mailto:support@swifthaul.ng" class="hover:text-orange-500 transition"><i class="fa-regular fa-envelope mr-1"></i> support@swifthaul.ng</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-50 bg-navy-800 text-white shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo -->
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-11 h-11 bg-orange-500 rounded-xl flex items-center justify-center text-navy-900 text-2xl font-black shadow-lg transform group-hover:scale-105 transition">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold tracking-tight text-white font-heading">Swift<span class="text-orange-500">Haul</span></span>
+                        <span class="block text-[10px] text-slate-400 tracking-widest uppercase font-semibold">Logistics Nigeria</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-xs xl:text-sm font-medium">
+                    <a href="index.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Home</a>
+                    <a href="about.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">About Us</a>
+                    <a href="services.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Services</a>
+                    <a href="tracking.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Track Shipment</a>
+                    <a href="request-delivery.html" class="px-3 py-2 rounded-lg text-slate-200 hover:text-white hover:bg-navy-700 transition">Request a Delivery</a>
+                    <a href="contact.html" class="px-3 py-2 rounded-lg text-orange-400 font-bold bg-navy-700/80 transition">Contact</a>
+                </nav>
+
+                <!-- Navigation CTAs -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="quote.html" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-2.5 rounded-xl shadow-lg shadow-orange-500/20 transform hover:-translate-y-0.5 transition flex items-center text-sm">
+                        <i class="fa-solid fa-calculator mr-2"></i> Get Instant Quote
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden text-slate-200 hover:text-white p-2 rounded-lg hover:bg-navy-700 focus:outline-none" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-navy-900 border-t border-navy-700 px-4 pt-3 pb-6 space-y-2">
+            <a href="index.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Home</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="about.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>About Us</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="services.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Services</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="tracking.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Track Shipment</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="request-delivery.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Request a Delivery</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="quote.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>Get Quote</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="contact.html" class="w-full text-left px-3 py-2.5 rounded-lg bg-orange-500/10 text-orange-400 font-bold flex items-center justify-between"><span>Contact Us</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+            <a href="faq.html" class="w-full text-left px-3 py-2.5 rounded-lg text-slate-200 hover:bg-navy-800 flex items-center justify-between"><span>FAQs</span> <i class="fa-solid fa-chevron-right text-xs"></i></a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+        <section class="hero-bg text-white py-16 md:py-24 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <nav class="flex justify-center items-center gap-2 text-xs text-slate-300 font-medium uppercase tracking-wider mb-4">
+                    <a href="index.html" class="hover:text-orange-400 transition">Home</a>
+                    <i class="fa-solid fa-chevron-right text-[10px] text-orange-500"></i>
+                    <span class="text-orange-400">Contact Us</span>
+                </nav>
+
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight font-heading leading-tight">
+                    Get in Touch with <span class="text-orange-500">SwiftHaul</span>
+                </h1>
+                <p class="text-slate-300 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto mt-3 leading-relaxed">
+                    Have an inquiry, corporate logistics partnership request, or need help with a shipment? Our customer support team is available 24/7 across Nigeria.
+                </p>
+
+                <!-- Quick Contact Badges Grid -->
+                <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                    <a href="tel:+234700794384281" class="bg-navy-800/80 hover:bg-navy-800 border border-navy-700/80 p-4 rounded-2xl flex flex-col items-center justify-center transition group">
+                        <i class="fa-solid fa-phone-volume text-orange-500 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                        <span class="text-[11px] text-slate-400 uppercase font-semibold">Toll-Free Support</span>
+                        <span class="text-xs font-bold text-white mt-0.5">+234 700 SWIFTHAUL</span>
+                    </a>
+                    
+                    <a href="mailto:support@swifthaul.ng" class="bg-navy-800/80 hover:bg-navy-800 border border-navy-700/80 p-4 rounded-2xl flex flex-col items-center justify-center transition group">
+                        <i class="fa-solid fa-envelope text-orange-500 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                        <span class="text-[11px] text-slate-400 uppercase font-semibold">Email Desk</span>
+                        <span class="text-xs font-bold text-white mt-0.5">support@swifthaul.ng</span>
+                    </a>
+
+                    <div class="bg-navy-800/80 border border-navy-700/80 p-4 rounded-2xl flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-building-flag text-orange-500 text-2xl mb-2"></i>
+                        <span class="text-[11px] text-slate-400 uppercase font-semibold">Headquarters</span>
+                        <span class="text-xs font-bold text-white mt-0.5">Yaba, Lagos, NG</span>
+                    </div>
+
+                    <a href="https://wa.me/2348129990000" target="_blank" class="bg-navy-800/80 hover:bg-navy-800 border border-navy-700/80 p-4 rounded-2xl flex flex-col items-center justify-center transition group">
+                        <i class="fa-brands fa-whatsapp text-emerald-400 text-2xl mb-2 group-hover:scale-110 transition-transform"></i>
+                        <span class="text-[11px] text-slate-400 uppercase font-semibold">Live Chat</span>
+                        <span class="text-xs font-bold text-white mt-0.5">WhatsApp Support</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 md:py-16 bg-slateBg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-8 items-start">
+
+                    <!-- Left Column: Interactive Contact Form (7 Columns) -->
+                    <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-200">
+                        <div class="border-b border-slate-100 pb-5 mb-6">
+                            <span class="text-xs font-bold text-orange-500 uppercase tracking-widest block">Send Us a Message</span>
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-navy-900 font-heading mt-1">Submit Your Inquiry Ticket</h2>
+                            <p class="text-xs text-slate-500 mt-1">Fill in the form below. Our response team will generate an official ticket number instantly.</p>
+                        </div>
+
+                        <form id="contactInquiryForm" onsubmit="handleContactSubmit(event)" novalidate class="space-y-5">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Your Full Name *</label>
+                                    <input type="text" id="contactName" placeholder="e.g. Oluwaseun Adeleke" required class="input-field">
+                                    <span id="err-contactName" class="text-[11px] text-rose-600 hidden font-medium mt-1">Please enter your full name.</span>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Email Address *</label>
+                                    <input type="email" id="contactEmail" placeholder="e.g. seun@company.com" required class="input-field">
+                                    <span id="err-contactEmail" class="text-[11px] text-rose-600 hidden font-medium mt-1">A valid email address is required.</span>
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Phone Number *</label>
+                                    <input type="tel" id="contactPhone" placeholder="e.g. +234 803 123 4567" required class="input-field">
+                                    <span id="err-contactPhone" class="text-[11px] text-rose-600 hidden font-medium mt-1">Valid Nigerian phone number required.</span>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Inquiry Category *</label>
+                                    <select id="contactSubject" required class="input-field bg-white">
+                                        <option value="General Support">General Support / Enquiry</option>
+                                        <option value="Shipment Tracking Support">Shipment Tracking & Status Query</option>
+                                        <option value="Corporate Partnership">Corporate Account & Business Partnership</option>
+                                        <option value="Billing & Invoicing">Billing, Charges & Payments</option>
+                                        <option value="Fleet Management">Haulage Fleet & Heavy Freight</option>
+                                        <option value="Claim / Dispute Resolution">Damage / Delay Claim Dispute</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">State / Regional Hub</label>
+                                    <select id="contactState" class="input-field bg-white">
+                                        <option value="Lagos">Lagos State (Hub HQ)</option>
+                                        <option value="Abuja">Abuja (FCT Central Hub)</option>
+                                        <option value="Rivers">Port Harcourt (Rivers)</option>
+                                        <option value="Kano">Kano State Hub</option>
+                                        <option value="Oyo">Ibadan (Oyo)</option>
+                                        <option value="Enugu">Enugu State Hub</option>
+                                        <option value="Anambra">Onitsha (Anambra)</option>
+                                        <option value="Edo">Benin City (Edo)</option>
+                                        <option value="Other">Other Nigerian Location</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Waybill / Tracking Code (If Any)</label>
+                                    <input type="text" id="contactWaybill" placeholder="e.g. SHL202610001" class="input-field uppercase font-mono">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Detailed Message *</label>
+                                <textarea id="contactMessage" rows="4" placeholder="Describe your request or parcel inquiry in detail..." required class="input-field"></textarea>
+                                <span id="err-contactMessage" class="text-[11px] text-rose-600 hidden font-medium mt-1">Please type in your detailed message.</span>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-navy-800 uppercase tracking-wider mb-2">Attach Document / Receipt (Optional)</label>
+                                <div class="border border-dashed border-slate-300 rounded-xl p-4 text-center bg-slate-50 hover:bg-slate-100 transition cursor-pointer" onclick="document.getElementById('fileAttachment').click()">
+                                    <i class="fa-solid fa-cloud-arrow-up text-orange-500 text-xl mb-1"></i>
+                                    <p class="text-xs font-semibold text-navy-800" id="fileAttachmentLabel">Click to upload waybill receipt or damage photo (PDF, PNG, JPG)</p>
+                                    <span class="text-[10px] text-slate-400">Maximum file size: 10MB</span>
+                                    <input type="file" id="fileAttachment" class="hidden" onchange="updateFileName(this)">
+                                </div>
+                            </div>
+
+                            <button type="submit" id="submitInquiryBtn" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-black py-4 rounded-xl transition shadow-xl text-sm flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> Send Inquiry & Generate Ticket
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Direct Contact Hub Cards (5 Columns) -->
+                    <div class="lg:col-span-5 space-y-6">
+
+                        <!-- Main Head Office Card -->
+                        <div class="bg-navy-900 text-white rounded-3xl p-6 sm:p-7 shadow-xl border border-navy-800 space-y-5">
+                            <div class="flex items-center justify-between border-b border-navy-800 pb-4">
+                                <span class="bg-orange-500/20 text-orange-400 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">Corporate HQ</span>
+                                <span class="text-xs text-emerald-400 font-semibold flex items-center gap-1"><i class="fa-solid fa-circle text-[8px]"></i> Open Now</span>
+                            </div>
+
+                            <div>
+                                <h3 class="text-base font-bold text-white font-heading">Lagos Central Logistics Command</h3>
+                                <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                                    <i class="fa-solid fa-location-dot text-orange-500 mr-2"></i> 14 Commercial Avenue, Sabo, Yaba, Lagos State, Nigeria.
+                                </p>
+                            </div>
+
+                            <div class="space-y-2.5 text-xs text-slate-300 border-t border-navy-800 pt-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">Customer Care Desk:</span>
+                                    <a href="tel:+234700794384281" class="font-bold text-white hover:text-orange-400 transition">+234 (0) 700 SWIFTHAUL</a>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">Corporate & B2B Line:</span>
+                                    <a href="tel:+2348123456789" class="font-bold text-white hover:text-orange-400 transition">+234 812 345 6789</a>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">Support Email:</span>
+                                    <a href="mailto:support@swifthaul.ng" class="font-bold text-orange-400 hover:underline">support@swifthaul.ng</a>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-slate-400">B2B Partnerships:</span>
+                                    <a href="mailto:corporate@swifthaul.ng" class="font-bold text-orange-400 hover:underline">corporate@swifthaul.ng</a>
+                                </div>
+                            </div>
+
+                            <a href="https://wa.me/2348129990000?text=Hello%20SwiftHaul,%20I%20need%20assistance%20with%20a%20delivery" target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 text-xs shadow-lg">
+                                <i class="fa-brands fa-whatsapp text-lg"></i> Direct WhatsApp Dispatch Line
+                            </a>
+                        </div>
+
+                        <!-- Secondary Regional Hubs Summary Box -->
+                        <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-200 space-y-4">
+                            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100 pb-3 flex items-center justify-between">
+                                <span><i class="fa-solid fa-map-location-dot text-orange-500 mr-2"></i> Regional Key Terminals</span>
+                                <span class="text-navy-800 text-[10px] font-bold">24/7 Operations</span>
+                            </h3>
+
+                            <div class="space-y-4 text-xs">
+                                <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200/80">
+                                    <h4 class="font-bold text-navy-900 font-heading">Abuja FCT Central Hub</h4>
+                                    <p class="text-slate-500 text-[11px] mt-0.5"><i class="fa-solid fa-location-dot text-orange-500 mr-1"></i> Plot 402, Central Business District, Abuja</p>
+                                    <p class="text-slate-600 font-medium text-[11px] mt-1"><i class="fa-solid fa-phone text-slate-400 mr-1"></i> +234 901 888 2211</p>
+                                </div>
+
+                                <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200/80">
+                                    <h4 class="font-bold text-navy-900 font-heading">Port Harcourt Maritime Hub</h4>
+                                    <p class="text-slate-500 text-[11px] mt-0.5"><i class="fa-solid fa-location-dot text-orange-500 mr-1"></i> Trans-Amadi Industrial Layout, Port Harcourt, Rivers State</p>
+                                    <p class="text-slate-600 font-medium text-[11px] mt-1"><i class="fa-solid fa-phone text-slate-400 mr-1"></i> +234 809 333 4455</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Operating Hours Breakdown Card -->
+                        <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm text-xs space-y-3">
+                            <h4 class="font-bold text-navy-900 font-heading flex items-center gap-2">
+                                <i class="fa-solid fa-clock text-orange-500"></i> Operating Schedule
+                            </h4>
+                            <div class="space-y-2 text-slate-600">
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span>Doorstep Pickups & Fleet Dispatch:</span>
+                                    <span class="font-bold text-emerald-600">24/7 Mon - Sun</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-100 pb-1.5">
+                                    <span>Physical Hub Drop-offs:</span>
+                                    <span class="font-bold text-navy-800">Mon - Fri (7 AM - 9 PM)</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Weekend Hub Drop-offs:</span>
+                                    <span class="font-bold text-navy-800">Sat - Sun (8 AM - 8 PM)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-white border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="text-orange-500 font-bold uppercase text-xs tracking-widest">National Network</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-800 font-heading mt-1">Interactive Regional Hub Locator</h2>
+                    <p class="text-slate-500 text-xs sm:text-sm mt-2">Select a regional station to view address details, on-duty team stats, and map simulation.</p>
+                </div>
+
+                <!-- Hub Tab Navigation Bar -->
+                <div class="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-8">
+                    <button onclick="switchHub('lagos')" id="hubTab-lagos" class="px-5 py-2.5 rounded-xl text-xs font-bold transition bg-orange-500 text-white shadow-md whitespace-nowrap">
+                        <i class="fa-solid fa-building mr-1.5"></i> Lagos HQ
+                    </button>
+                    <button onclick="switchHub('abuja')" id="hubTab-abuja" class="px-5 py-2.5 rounded-xl text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap">
+                        <i class="fa-solid fa-building mr-1.5"></i> Abuja Central
+                    </button>
+                    <button onclick="switchHub('ph')" id="hubTab-ph" class="px-5 py-2.5 rounded-xl text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap">
+                        <i class="fa-solid fa-ship mr-1.5"></i> Port Harcourt
+                    </button>
+                    <button onclick="switchHub('kano')" id="hubTab-kano" class="px-5 py-2.5 rounded-xl text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap">
+                        <i class="fa-solid fa-warehouse mr-1.5"></i> Kano Terminal
+                    </button>
+                    <button onclick="switchHub('enugu')" id="hubTab-enugu" class="px-5 py-2.5 rounded-xl text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap">
+                        <i class="fa-solid fa-truck-ramp-box mr-1.5"></i> Enugu Hub
+                    </button>
+                </div>
+
+                <!-- Hub Interactive Card View -->
+                <div class="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md grid lg:grid-cols-12 gap-8 items-center" id="hubDetailCard">
+                    <!-- Dynamic Hub Content loaded via JS -->
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-slateBg border-t border-slate-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-orange-500 font-bold uppercase text-xs tracking-widest">Support Guidance</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-800 font-heading mt-1">Frequently Asked Contact Questions</h2>
+                    <p class="text-slate-500 text-xs sm:text-sm mt-2">Get quick answers regarding response timelines, claims, and B2B corporate setup.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+                        <button onclick="toggleFaq('contactFaq1')" class="w-full p-5 text-left bg-slate-50 font-bold text-navy-800 text-sm flex justify-between items-center hover:bg-slate-100 transition">
+                            <span>What is the expected response time for digital inquiry tickets?</span>
+                            <i id="contactFaq1-icon" class="fa-solid fa-chevron-down text-orange-500 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="contactFaq1" class="hidden p-5 text-xs sm:text-sm text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
+                            Digital inquiry tickets generated through this contact form are logged directly into our central dispatch desk. General inquiries are replied to within 15–30 minutes, while urgent tracking queries receive instant dispatcher attention via SMS and call.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+                        <button onclick="toggleFaq('contactFaq2')" class="w-full p-5 text-left bg-slate-50 font-bold text-navy-800 text-sm flex justify-between items-center hover:bg-slate-100 transition">
+                            <span>How do I file a dispute or claim for a damaged/missing package?</span>
+                            <i id="contactFaq2-icon" class="fa-solid fa-chevron-down text-orange-500 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="contactFaq2" class="hidden p-5 text-xs sm:text-sm text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
+                            To initiate a claim, select <strong>"Claim / Dispute Resolution"</strong> in the inquiry category drop-down above. Be sure to attach your waybill receipt or photos of the package damage. Our claims officer will contact you within 2 business hours.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+                        <button onclick="toggleFaq('contactFaq3')" class="w-full p-5 text-left bg-slate-50 font-bold text-navy-800 text-sm flex justify-between items-center hover:bg-slate-100 transition">
+                            <span>How can my e-commerce business register for a B2B corporate account?</span>
+                            <i id="contactFaq3-icon" class="fa-solid fa-chevron-down text-orange-500 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="contactFaq3" class="hidden p-5 text-xs sm:text-sm text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
+                            E-commerce merchants can email our B2B desk directly at <a href="mailto:corporate@swifthaul.ng" class="text-orange-500 font-bold underline">corporate@swifthaul.ng</a> or select "Corporate Partnership" on the form. B2B accounts enjoy discounted bulk tariffs, weekly COD remittances, and dedicated account managers.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-sm">
+                        <button onclick="toggleFaq('contactFaq4')" class="w-full p-5 text-left bg-slate-50 font-bold text-navy-800 text-sm flex justify-between items-center hover:bg-slate-100 transition">
+                            <span>Can I drop off my package physically at any SwiftHaul hub?</span>
+                            <i id="contactFaq4-icon" class="fa-solid fa-chevron-down text-orange-500 text-xs transition-transform duration-200"></i>
+                        </button>
+                        <div id="contactFaq4" class="hidden p-5 text-xs sm:text-sm text-slate-600 border-t border-slate-200 bg-white leading-relaxed">
+                            Yes! You can walk into any of our regional hubs in Lagos, Abuja, Port Harcourt, Kano, or Enugu during operating hours. Our counter staff will assist with physical weight scanning, waybill creation, and payment.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="ticketModal" class="hidden fixed inset-0 z-50 bg-navy-900/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 text-center relative animate-fade-in">
+            
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                <i class="fa-solid fa-ticket-simple"></i>
+            </div>
+
+            <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-widest border border-emerald-200">
+                Ticket Created Successfully
+            </span>
+            <h3 class="text-xl font-bold text-navy-900 font-heading mt-2">Inquiry Logged</h3>
+            <p class="text-xs text-slate-500 mt-1">Our support team has been notified. Keep your reference ticket code handy.</p>
+
+            <!-- Ticket Card Box -->
+            <div class="bg-slate-50 rounded-2xl p-4 my-6 border border-slate-200 text-xs space-y-3 font-mono text-left">
+                <div class="flex justify-between border-b border-slate-200 pb-2">
+                    <span class="text-slate-500">Ticket Ref Number:</span>
+                    <span id="ticketRefCode" class="font-bold text-orange-600 text-sm">TKT-NGA-98231</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Sender Name:</span>
+                    <span id="ticketName" class="font-bold text-navy-900">Oluwaseun A.</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Category:</span>
+                    <span id="ticketCategory" class="font-bold text-navy-900">General Support</span>
+                </div>
+                <div class="flex justify-between border-t border-slate-200 pt-2 font-sans font-bold">
+                    <span class="text-navy-900">Est. Response Time:</span>
+                    <span class="text-emerald-600 text-xs"><i class="fa-solid fa-bolt mr-1"></i> Under 15 Mins</span>
+                </div>
+            </div>
+
+            <div class="space-y-2.5">
+                <button onclick="closeTicketModal()" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition text-xs shadow-lg">
+                    Done & Return
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-navy-900 text-slate-300 border-t border-navy-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center text-navy-900 text-xl font-black">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <span class="text-2xl font-bold tracking-tight text-white font-heading">Swift<span class="text-orange-500">Haul</span></span>
+                    </a>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                        SwiftHaul Logistics is Nigeria's premier technology-driven courier platform providing same-day urban dispatch, inter-state heavy haulage, and global air cargo shipping.
+                    </p>
+                    
+                    <!-- Newsletter Subscription -->
+                    <div class="pt-2">
+                        <span class="text-xs text-slate-300 font-semibold block mb-2">Subscribe for Logistics Insights</span>
+                        <form onsubmit="event.preventDefault(); alert('Thank you for subscribing to SwiftHaul Logistics!');" class="flex gap-2 max-w-sm">
+                            <input type="email" placeholder="Enter your email address" required class="bg-navy-800 border border-navy-700 text-xs px-3 py-2 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 flex-grow">
+                            <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold px-4 py-2 rounded-lg transition">Join</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Main Pages</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="index.html" class="hover:text-orange-500 transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-orange-500 transition">About Company</a></li>
+                        <li><a href="services.html" class="hover:text-orange-500 transition">Our Services</a></li>
+                        <li><a href="tracking.html" class="hover:text-orange-500 transition">Track Package</a></li>
+                        <li><a href="contact.html" class="text-orange-400 font-bold">Contact Desk</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Tools & Booking</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="request-delivery.html" class="hover:text-orange-500 transition">Request a Delivery</a></li>
+                        <li><a href="quote.html" class="hover:text-orange-500 transition">Rate Calculator</a></li>
+                        <li><a href="faq.html" class="hover:text-orange-500 transition">Help & FAQs</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold text-sm font-heading mb-4 border-b border-navy-800 pb-2">Legal Policies</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="shipping.html" class="hover:text-orange-500 transition">Shipping Policy</a></li>
+                        <li><a href="privacy.html" class="hover:text-orange-500 transition">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-orange-500 transition">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-navy-800 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <div>&copy; 2026 SwiftHaul Logistics Nigeria Ltd. All rights reserved.</div>
+                <div class="flex items-center space-x-4 text-slate-400">
+                    <a href="#" class="hover:text-orange-500 transition" aria-label="Facebook"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition" aria-label="Twitter"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition" aria-label="Instagram"><i class="fa-brands fa-instagram text-sm"></i></a>
+                    <a href="#" class="hover:text-orange-500 transition" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+        <a href="https://wa.me/2348129990000?text=Hello%20SwiftHaul,%20I%20need%20logistics%20support" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition" title="WhatsApp Instant Support">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </a>
+        <button onclick="scrollToTop()" id="backToTopBtn" class="hidden w-12 h-12 bg-navy-800 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition border border-slate-600" title="Back to Top">
+            <i class="fa-solid fa-arrow-up text-base"></i>
+        </button>
+    </div>
+
+    <script>
+        /* Regional Hub Data Store */
+        const hubData = {
+            'lagos': {
+                name: 'Lagos Central Command & HQ',
+                address: '14 Commercial Avenue, Sabo, Yaba, Lagos State',
+                phone: '+234 (0) 700 SWIFTHAUL / +234 812 345 6789',
+                status: 'Open 24/7 (Full Fleet Active)',
+                riders: '120+ Active Dispatch Bike & Haulage Drivers',
+                coverage: 'Lagos Island, Victoria Island, Ikeja, Lekki, Epe, Badagry & Ikorodu',
+                embedUrl: 'Lagos Hub Command • Yaba Sector'
+            },
+            'abuja': {
+                name: 'Abuja FCT Central Logistics Station',
+                address: 'Plot 402, Central Business District, Abuja (FCT)',
+                phone: '+234 901 888 2211',
+                status: 'Open 24/7 (Doorstep Operations)',
+                riders: '65 Active Courier Riders & Vans',
+                coverage: 'Garki, Wuse II, Maitama, Asokoro, Gwarinpa, Kubwa & Airport Road',
+                embedUrl: 'Abuja Central Station • CBD Sector'
+            },
+            'ph': {
+                name: 'Port Harcourt Maritime & Oil Freight Hub',
+                address: 'Trans-Amadi Industrial Layout, Port Harcourt, Rivers State',
+                phone: '+234 809 333 4455',
+                status: 'Open 24/7 (Heavy Cargo Terminal)',
+                riders: '45 Active Heavy Cargo Units & Bikers',
+                coverage: 'GRA Phase 1-4, Aba Road, Onne Port, Oyigbo & Bonny Island Freight',
+                embedUrl: 'Port Harcourt Terminal • Trans-Amadi Sector'
+            },
+            'kano': {
+                name: 'Kano Commercial & Sahel Logistics Depot',
+                address: 'Plot 18, Commercial Layout, BUK Road, Kano State',
+                phone: '+234 806 444 5566',
+                status: 'Open 24/7 (Sahel Haulage Route)',
+                riders: '35 Freight Trucks & Express Bikers',
+                coverage: 'Kano Metropolis, Fagge, Sabon Gari, Sharada Industrial Estate',
+                embedUrl: 'Kano Depot • BUK Road Sector'
+            },
+            'enugu': {
+                name: 'Enugu Eastern Regional Gateway',
+                address: 'Suite 12, Zik Avenue, Independence Layout, Enugu State',
+                phone: '+234 807 778 8999',
+                status: 'Open 24/7 (Inter-State Hub)',
+                riders: '30 Active Dispatch Couriers',
+                coverage: 'Independence Layout, Ogui Road, Abakpa, Nsukka Expressway',
+                embedUrl: 'Enugu Gateway • Independence Layout Sector'
+            }
+        };
+
+        window.addEventListener('DOMContentLoaded', () => {
+            switchHub('lagos');
+        });
+
+        /* Hub Locator Tab Switching */
+        function switchHub(hubKey) {
+            const keys = ['lagos', 'abuja', 'ph', 'kano', 'enugu'];
+            keys.forEach(k => {
+                const btn = document.getElementById(`hubTab-${k}`);
+                if (k === hubKey) {
+                    btn.className = 'px-5 py-2.5 rounded-xl text-xs font-bold transition bg-orange-500 text-white shadow-md whitespace-nowrap';
+                } else {
+                    btn.className = 'px-5 py-2.5 rounded-xl text-xs font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200 whitespace-nowrap';
+                }
+            });
+
+            const data = hubData[hubKey];
+            const container = document.getElementById('hubDetailCard');
+
+            container.innerHTML = `
+                <div class="lg:col-span-6 space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="bg-orange-500/10 text-orange-600 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase tracking-wider">Active Regional Terminal</span>
+                        <span class="text-xs text-emerald-600 font-bold"><i class="fa-solid fa-circle text-[8px] mr-1"></i> Live Fleet Telemetry</span>
+                    </div>
+
+                    <h3 class="text-xl sm:text-2xl font-black text-navy-900 font-heading">${data.name}</h3>
+
+                    <div class="space-y-2.5 text-xs text-slate-600">
+                        <p class="flex items-start gap-2">
+                            <i class="fa-solid fa-location-dot text-orange-500 mt-0.5 text-sm"></i>
+                            <span class="font-medium">${data.address}</span>
+                        </p>
+                        <p class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-orange-500 text-sm"></i>
+                            <span class="font-bold text-navy-900">${data.phone}</span>
+                        </p>
+                        <p class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock text-orange-500 text-sm"></i>
+                            <span class="text-emerald-600 font-semibold">${data.status}</span>
+                        </p>
+                        <p class="flex items-center gap-2">
+                            <i class="fa-solid fa-truck-fast text-orange-500 text-sm"></i>
+                            <span>${data.riders}</span>
+                        </p>
+                    </div>
+
+                    <div class="pt-2 border-t border-slate-200">
+                        <span class="text-[11px] font-bold text-navy-900 uppercase tracking-wider block mb-1">Key Sub-Zone Coverage:</span>
+                        <p class="text-xs text-slate-500 leading-relaxed">${data.coverage}</p>
+                    </div>
+
+                    <div class="pt-2 flex gap-3">
+                        <a href="tel:${data.phone.split('/')[0].trim()}" class="bg-navy-800 hover:bg-navy-900 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition flex items-center gap-2">
+                            <i class="fa-solid fa-phone"></i> Call Station
+                        </a>
+                        <a href="request-delivery.html" class="bg-orange-500 hover:bg-orange-600 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition flex items-center gap-2">
+                            <i class="fa-solid fa-box-open"></i> Book Pickup Here
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Simulated Map Box -->
+                <div class="lg:col-span-6 bg-navy-900 text-white rounded-2xl p-6 h-64 sm:h-72 flex flex-col justify-between relative overflow-hidden shadow-inner border border-navy-800">
+                    <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#FF8A00_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                    
+                    <div class="relative z-10 flex justify-between items-start">
+                        <div>
+                            <span class="text-[10px] text-orange-400 font-mono uppercase font-bold block">Terminal Coordinate Scan</span>
+                            <span class="text-sm font-bold text-white">${data.embedUrl}</span>
+                        </div>
+                        <span class="w-8 h-8 rounded-full bg-orange-500 text-navy-900 flex items-center justify-center font-bold text-xs shadow-lg animate-pulse">
+                            <i class="fa-solid fa-location-crosshairs"></i>
+                        </span>
+                    </div>
+
+                    <div class="relative z-10 bg-navy-800/90 p-4 rounded-xl border border-navy-700/80 text-xs space-y-1">
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Station Status:</span>
+                            <span class="text-emerald-400 font-bold">Online & Receiving</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Dispatcher Queue:</span>
+                            <span class="text-white font-mono">0 Mins Delay</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /* Update File Upload Label */
+        function updateFileName(input) {
+            const label = document.getElementById('fileAttachmentLabel');
+            if (input.files && input.files[0]) {
+                label.textContent = `Selected File: ${input.files[0].name}`;
+            }
+        }
+
+        /* Contact Form Validation & Submission Handling */
+        function handleContactSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('contactName');
+            const email = document.getElementById('contactEmail');
+            const phone = document.getElementById('contactPhone');
+            const subject = document.getElementById('contactSubject').value;
+            const message = document.getElementById('contactMessage');
+            const btn = document.getElementById('submitInquiryBtn');
+
+            let isValid = true;
+
+            if (!name.value.trim()) { showError('contactName', true); isValid = false; } else showError('contactName', false);
+            if (!email.value.includes('@')) { showError('contactEmail', true); isValid = false; } else showError('contactEmail', false);
+            if (!phone.value.trim() || phone.value.length < 10) { showError('contactPhone', true); isValid = false; } else showError('contactPhone', false);
+            if (!message.value.trim()) { showError('contactMessage', true); isValid = false; } else showError('contactMessage', false);
+
+            if (isValid) {
+                btn.disabled = true;
+                btn.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin text-base"></i> Generating Ticket Reference...`;
+
+                setTimeout(() => {
+                    const randomDigits = Math.floor(10000 + Math.random() * 90000);
+                    const ticketRef = `TKT-NGA-${randomDigits}`;
+
+                    document.getElementById('ticketRefCode').textContent = ticketRef;
+                    document.getElementById('ticketName').textContent = name.value;
+                    document.getElementById('ticketCategory').textContent = subject;
+
+                    document.getElementById('ticketModal').classList.remove('hidden');
+
+                    btn.disabled = false;
+                    btn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> Send Inquiry & Generate Ticket`;
+                }, 800);
+            }
+        }
+
+        function showError(fieldId, show) {
+            const field = document.getElementById(fieldId);
+            const errSpan = document.getElementById('err-' + fieldId);
+            if (show) {
+                field.classList.add('input-error');
+                if (errSpan) errSpan.classList.remove('hidden');
+            } else {
+                field.classList.remove('input-error');
+                if (errSpan) errSpan.classList.add('hidden');
+            }
+        }
+
+        function closeTicketModal() {
+            document.getElementById('ticketModal').classList.add('hidden');
+            document.getElementById('contactInquiryForm').reset();
+            document.getElementById('fileAttachmentLabel').textContent = 'Click to upload waybill receipt or damage photo (PDF, PNG, JPG)';
+        }
+
+        function toggleFaq(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backToTopBtn');
+            if (window.scrollY > 300) {
+                btn.classList.remove('hidden');
+            } else {
+                btn.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
